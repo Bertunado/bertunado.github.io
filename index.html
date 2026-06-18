@@ -229,8 +229,16 @@
       width: 230px;
       height: 230px;
       border-radius: 50%;
-      object-fit: cover;
+      overflow: hidden;
       border: 3px solid rgba(129, 140, 248, 0.6);
+    }
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: 73% 34%;   /* rosto mais p/ a esquerda no círculo */
+      transform: scale(1.06);      /* zoom mais suave */
     }
 
     @media (max-width: 900px) {
@@ -1555,7 +1563,7 @@
       </div>
 
       <div class="hero-photo">
-        <img class="profile-pic" src="img/avatar.jpg" alt="Foto de Bernardo Viana">
+        <div class="profile-pic"><img src="img/avatar.jpg" alt="Foto de Bernardo Viana"></div>
       </div>
     </div>
   </section>
