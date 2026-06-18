@@ -1,0 +1,2911 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bernardo Viana — Desenvolvedor Full Stack & Engenheiro de IA</title>
+  <meta name="description" content="Currículo de Bernardo Viana — Desenvolvedor Full Stack & Engenheiro de IA. Agentes de IA em produção, e-commerces e provador virtual de óculos em 3D.">
+  <meta property="og:title" content="Bernardo Viana — Desenvolvedor Full Stack & Engenheiro de IA">
+  <meta property="og:description" content="Agentes de IA conversacional em produção, e-commerces completos e provador virtual de óculos em 3D com precisão optométrica.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- fontes que se alternam no título "Projetos Relevantes" -->
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Caveat:wght@700&family=Oswald:wght@700&family=Playfair+Display:wght@800&family=Righteous&display=swap" rel="stylesheet">
+  <!-- model-viewer: carrega o cérebro 3D (.glb) na seção de Formação -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+  <style>
+    :root {
+      --bg: #0e0c14;
+      --surface: #171420;
+      --surface-2: #1f1b2c;
+      --text: #ebe9f2;
+      --text-muted: #a09ab3;
+      --accent: #a78bfa;
+      --accent-strong: #8b5cf6;
+      --accent-soft: rgba(139, 92, 246, 0.14);
+      --border: #2c2740;
+      --radius: 14px;
+      --topbar-bg: rgba(14, 12, 20, 0.85);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; background: var(--bg); }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      /* clip (em vez de hidden) evita barra horizontal sem quebrar o position:sticky do carrossel */
+      overflow-x: clip;
+    }
+
+    /* ===== Alternância de idioma =====
+       body.lang-pt mostra .pt e esconde .en; body.lang-en faz o inverso. */
+    body.lang-pt .en { display: none !important; }
+    body.lang-en .pt { display: none !important; }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== Barra superior ===== */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--topbar-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      position: relative;
+      max-width: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;   /* botões centralizados no meio */
+      padding: 14px 28px;
+    }
+
+    .topbar .logo {
+      position: absolute;        /* nome fixo à esquerda */
+      left: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .topbar .actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: center; }
+    .topbar #lang-toggle {       /* idioma fixo na extremidade direita */
+      position: absolute;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .btn {
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn:hover { border-color: var(--accent); }
+
+    .btn-accent {
+      background: var(--accent-strong);
+      border-color: var(--accent-strong);
+      color: #fff;
+    }
+
+    .btn-accent:hover { filter: brightness(1.1); }
+
+    /* ===== Cabeçalho / Hero (preto + azul arroxeado) ===== */
+    .hero {
+      --surface: #141414;
+      --surface-2: #1c1c1c;
+      --border: #272727;
+      --accent: #818cf8;
+      --text: #f4f4f4;
+      --text-muted: #9b9b9b;
+      background: #0a0a0a;
+      color: var(--text);
+    }
+
+    .hero-inner {
+      margin: 0;
+      padding: 0 56px 36px 48px;
+      margin-top: -32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 56px;
+    }
+
+    .hero-text { flex: 1 1 480px; }
+
+    .hero .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: #121212;
+      border: 1px solid #2c2c2c;
+      padding: 6px 14px;
+      border-radius: 999px;
+    }
+
+    .hero .badge .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      margin-top: 26px;
+      font-size: clamp(38px, 6.5vw, 68px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+
+    .hero .role {
+      margin-top: 14px;
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+
+    .hero .role em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero .summary {
+      margin-top: 22px;
+      max-width: 700px;
+      color: var(--text-muted);
+      font-size: 16.5px;
+    }
+
+    .hero .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+      background: var(--accent);
+      color: #0a0a0a;
+      font-size: 13.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 6px;
+      transition: filter 0.2s;
+    }
+
+    .hero .cta:hover { filter: brightness(1.12); }
+
+    .hero-photo {
+      position: relative;
+      flex-shrink: 0;
+      transform: translateY(-36px);
+      margin-right: 80px;
+    }
+
+    .hero-photo::before {
+      content: '';
+      position: absolute;
+      inset: -80px;
+      background: radial-gradient(circle, rgba(129, 140, 248, 0.18), transparent 65%);
+      border-radius: 50%;
+    }
+
+    .profile-pic {
+      position: relative;
+      display: block;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(129, 140, 248, 0.6);
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        gap: 36px;
+        padding: 56px 24px 48px;
+      }
+      .hero .summary { margin-left: auto; margin-right: auto; }
+      .hero .contact-row { justify-content: center; }
+      .profile-pic { width: 170px; height: 170px; }
+      .hero-photo { transform: none; margin-right: 0; }
+      .hero-photo::before { inset: -50px; }
+    }
+
+    .contact-row {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 999px;
+      transition: border-color 0.2s;
+    }
+
+    .chip:hover { border-color: var(--accent); }
+    .chip svg { width: 15px; height: 15px; fill: var(--accent); flex-shrink: 0; }
+
+    /* ===== Seções ===== */
+    section { padding: 36px 0; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 26px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* título com efeito de digitação (seção Contato) */
+    .type-title {
+      text-align: center;
+      font-size: clamp(28px, 4.8vw, 58px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 34px;
+      min-height: 1.2em;          /* evita "pulo" de layout enquanto digita */
+    }
+    .type-caret {
+      color: var(--accent);
+      font-weight: 700;
+      margin-left: 2px;
+      animation: type-blink 1s steps(1) infinite;
+    }
+    @keyframes type-blink { 50% { opacity: 0; } }
+
+    /* ===== Experiência: scroll horizontal "pin + pan" (estilo dope.security) ===== */
+    .exp-scroll {
+      position: relative;
+      height: 1300vh;         /* anima nos primeiros 95% + trava extra na tela final do Parkin */
+      background: #0d0b13;
+    }
+
+    .exp-pin {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    /* rótulo "Experiência Profissional" fixo e centralizado no topo */
+    .exp-heading {
+      position: absolute;
+      top: 15vh;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      z-index: 5;
+    }
+
+    /* FLECHA ÚNICA em ZIGUE-ZAGUE — SVG que cobre a tela; o JS "desenha" o
+       traçado (stroke-dashoffset) e desliza (translateX). A mesma faz tudo. */
+    .exp-zig {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: visible;
+      will-change: transform;
+    }
+    .exp-zig path {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 3;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 6px rgba(129, 140, 248, 0.5));
+    }
+
+    /* ponta (cabeça) da flecha — o JS posiciona (left/top) e gira na direção do traçado */
+    .exp-line-head {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+      border-left: 15px solid var(--accent);
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      filter: drop-shadow(0 0 8px rgba(129, 140, 248, 0.6));
+    }
+
+    /* "Inteligência Artificial" apagado; acompanha a ponta da flecha (left via JS) */
+    .exp-ia {
+      position: absolute;
+      top: 50vh;
+      left: 0;
+      transform: translateY(-50%);
+      text-align: left;
+      white-space: nowrap;
+      font-size: clamp(40px, 8vw, 110px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: #ffffff;
+      opacity: 0;
+      will-change: left, opacity;
+    }
+
+    /* aro "marketplace" — só a borda + texto curvado girando, vazio no meio */
+    .exp-sphere {
+      position: absolute;
+      top: 13vh;
+      right: 6vw;
+      width: 34vh;
+      height: 34vh;
+      opacity: 0;
+      pointer-events: none;
+      will-change: opacity;
+    }
+    .exp-sphere svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    .exp-sphere-ring {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.16);
+      stroke-width: 2.5;
+    }
+    .exp-sphere-text {
+      fill: rgba(255, 255, 255, 0.62);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      transform-box: view-box;
+      transform-origin: 100px 100px;
+      animation: exp-sphere-spin 22s linear infinite;
+    }
+    @keyframes exp-sphere-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .exp-div-top {
+      position: absolute;
+      left: 34vw;
+      width: 60vw;
+      top: 50vh;
+      transform: translateY(calc(-100% - 20px));
+      text-align: center;
+      font-size: clamp(16px, 1.9vw, 26px);
+      font-weight: 700;
+      line-height: 1.25;
+      color: #f4f3f8;
+      opacity: 0;
+    }
+    .exp-div-top strong { color: #fff; }
+
+    .exp-div-bottom {
+      position: absolute;
+      left: 34vw;
+      width: 60vw;
+      top: 50vh;
+      transform: translateY(20px);
+      text-align: center;
+      font-size: clamp(13px, 1.4vw, 18px);
+      font-weight: 500;
+      line-height: 1.4;
+      color: #bfb9d4;
+      opacity: 0;
+    }
+
+    /* texto dentro da curva central da onda (tela do Websites) */
+    .exp-ec {
+      position: absolute;
+      left: 50%;
+      top: 50vh;
+      transform: translate(-50%, -50%);
+      width: 46vw;
+      max-width: 600px;
+      text-align: center;
+      font-size: clamp(18px, 2.2vw, 30px);
+      font-weight: 500;
+      line-height: 1.3;
+      color: #e8e6f0;
+      opacity: 0;
+    }
+    .exp-ec strong { font-weight: 800; color: #fff; }
+
+    /* "Registro de domínio" — menor, acima do "Websites", surge quando a flecha passa */
+    .exp-reg {
+      position: absolute;
+      left: 9vw;
+      top: 38vh;
+      font-size: clamp(15px, 1.8vw, 24px);
+      font-weight: 600;
+      color: var(--accent);
+      opacity: 0;
+    }
+
+    /* "React/TypeScript" — abaixo da frase do meio */
+    .exp-stack {
+      position: absolute;
+      left: 50%;
+      top: 64vh;
+      transform: translateX(-50%);
+      text-align: center;
+      white-space: nowrap;
+      font-size: clamp(14px, 1.5vw, 20px);
+      font-weight: 600;
+      color: var(--accent);
+      opacity: 0;
+    }
+
+    /* "Deploy & hospedagem" — lado direito, mesma linha do "Registro de domínio" */
+    .exp-host {
+      position: absolute;
+      right: 9vw;
+      top: 38vh;
+      text-align: right;
+      font-size: clamp(15px, 1.8vw, 24px);
+      font-weight: 600;
+      color: var(--accent);
+      opacity: 0;
+    }
+
+    /* "Integração de vídeo/áudio por IA" — canto inf. esquerdo, tela da IA */
+    .exp-aifeat {
+      position: absolute;
+      left: 6vw;
+      top: 70vh;
+      max-width: 42vw;
+      font-size: clamp(15px, 1.8vw, 24px);
+      font-weight: 600;
+      color: var(--accent);
+      opacity: 0;
+    }
+
+    /* rótulos da tela do Parkin (losangos) — surgem conforme a flecha avança */
+    .exp-pk {
+      position: absolute;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      text-align: center;
+      font-size: clamp(15px, 1.8vw, 24px);
+      font-weight: 600;
+      color: #fff;
+      opacity: 0;
+      pointer-events: none;
+    }
+    #exp-pk-pwa  { left: 34%; top: 30vh; }
+    #exp-pk-geo  { left: 66%; top: 30vh; }
+    #exp-pk-chat { left: 34%; top: 70vh; }
+    #exp-pk-pay  { left: 66%; top: 70vh; }
+    #exp-pk-link { left: 50%; top: 50vh; transform: translate(-50%, -50%); z-index: 5; font-size: clamp(17px, 2.1vw, 28px); font-weight: 700; }
+    /* texts decorativos não capturam clique (deixam o link parkin.cloud clicável) */
+    .exp-ia, .exp-ec, .exp-div-top, .exp-div-bottom, .exp-reg, .exp-host, .exp-stack, .exp-aifeat { pointer-events: none; }
+    #exp-pk-link a {
+      color: var(--accent);
+      text-decoration: none;
+      pointer-events: auto;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(129, 140, 248, 0.55);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    #exp-pk-link a:hover { color: #fff; border-color: #fff; }
+
+    /* título fixo à esquerda (contexto) */
+    .exp-title {
+      position: absolute;
+      left: 6vw;
+      top: 20vh;
+      width: 42vw;
+      max-width: 540px;
+      will-change: transform;
+    }
+
+    /* área dos textos à direita; os itens se revezam (um visível por vez) */
+    .exp-texts {
+      position: absolute;
+      right: 6vw;
+      top: 33vh;
+      width: 44vw;
+      max-width: 600px;
+    }
+
+    .exp-text-item {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      opacity: 0;            /* o JS controla a entrada/saída conforme você rola */
+      will-change: transform, opacity;
+    }
+
+    .exp-title-h {
+      font-size: clamp(30px, 5vw, 60px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.04;
+      color: #f4f3f8;
+    }
+
+    .exp-org {
+      margin-top: 18px;
+      font-size: clamp(15px, 1.8vw, 20px);
+      font-weight: 600;
+      color: #cfcbe0;
+    }
+    .exp-org .accent { color: var(--accent); }
+
+    .exp-period {
+      margin-top: 6px;
+      font-size: 15px;
+      color: #8b85a0;
+    }
+
+    .exp-text {
+      font-size: clamp(19px, 2.5vw, 32px);
+      font-weight: 500;
+      line-height: 1.35;
+      color: #d7d4e6;
+    }
+    .exp-text strong { color: #fff; font-weight: 700; }
+
+    /* versão em texto da experiência só para impressão / PDF */
+    .exp-print { display: none; }
+
+    /* mobile: vira lista normal (sem trava), título em cima e textos empilhados */
+    @media (max-width: 760px) {
+      .exp-scroll { height: auto; }
+      .exp-zig, .exp-line-head, .exp-ia, .exp-div-top, .exp-div-bottom, .exp-ec, .exp-reg, .exp-stack, .exp-host, #exp-parkin, .exp-sphere, .exp-aifeat, .exp-pk { display: none; }
+      .exp-pin { position: static; height: auto; flex-direction: column; padding: 48px 0; }
+      .exp-heading { position: static; margin-bottom: 24px; }
+      .exp-title, .exp-texts {
+        position: static;
+        left: auto; right: auto; top: auto;
+        width: auto;
+        max-width: 88vw;
+        margin: 0 auto;
+      }
+      .exp-text-item {
+        position: static;
+        opacity: 1 !important;
+        transform: none !important;
+        margin-top: 26px;
+      }
+    }
+
+    .subsection-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin: 30px 0 14px;
+    }
+
+    /* ===== Experiência / Projetos ===== */
+    .item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+    }
+
+    .item + .item { margin-top: 14px; }
+
+    .item-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 4px 16px;
+    }
+
+    .item-head h3 { font-size: 17px; font-weight: 700; }
+
+    .item-head .period {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 3px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .item .org {
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .item ul {
+      margin-top: 12px;
+      padding-left: 18px;
+      color: var(--text-muted);
+      font-size: 14.5px;
+    }
+
+    .item ul li + li { margin-top: 6px; }
+    .item ul li::marker { color: var(--accent); }
+    .item ul li strong, .item p strong { color: var(--text); font-weight: 600; }
+
+    .item .desc {
+      margin-top: 10px;
+      color: var(--text-muted);
+      font-size: 14.5px;
+    }
+
+    .item .stack {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .item .stack strong { color: var(--accent); font-weight: 600; }
+
+    /* ===== Detalhes expansíveis com prints ===== */
+    details { margin-top: 14px; }
+
+    details summary {
+      cursor: pointer;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--accent);
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after { content: '▾'; transition: transform 0.2s; }
+    details[open] summary::after { transform: rotate(180deg); }
+
+    .shots {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 10px;
+    }
+
+    .shots a {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--surface-2);
+    }
+
+    .shots img {
+      display: block;
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.2s;
+    }
+
+    .shots a:hover img { transform: scale(1.04); }
+
+    .shots figcaption {
+      font-size: 12px;
+      color: var(--text-muted);
+      padding: 6px 9px;
+    }
+
+    /* ===== Habilidades ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+
+    .skill-group h4 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .tag {
+      font-size: 13px;
+      font-weight: 500;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    /* ===== Certificados ===== */
+    .cert-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .cert {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 20px;
+      font-size: 14.5px;
+    }
+
+    .cert svg { width: 18px; height: 18px; fill: var(--accent); flex-shrink: 0; }
+    .cert .issuer { color: var(--text-muted); font-size: 13px; margin-left: auto; white-space: nowrap; }
+
+    /* ===== Contato (formulário) ===== */
+    .contact-form {
+      max-width: 620px;
+      margin: 0 auto;          /* card menor e centralizado */
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      display: grid;
+      gap: 14px;
+    }
+
+    #contato { padding-top: 92px; }   /* abaixa a seção (título + card) */
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 560px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .field input, .field textarea {
+      width: 100%;
+      font-family: inherit;
+      font-size: 14.5px;
+      color: var(--text);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 13px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .field input:focus, .field textarea:focus {
+      outline: none;
+      border-color: var(--accent-strong);
+      box-shadow: 0 0 0 2px var(--accent-soft);
+    }
+
+    .contact-form button {
+      justify-self: start;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(45deg, #8b5cf6, #a855f7);
+      border: none;
+      border-radius: 999px;
+      padding: 11px 26px;
+      cursor: pointer;
+      transition: filter 0.2s;
+    }
+
+    .contact-form button:hover { filter: brightness(1.1); }
+
+    /* ===== Chatbot ===== */
+    .chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #8b5cf6, #a855f7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.6);
+      z-index: 1001;
+      transition: all 0.3s ease;
+      font-size: 26px;
+      color: #fff;
+    }
+
+    .chatbot-container:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.8);
+    }
+
+    #chat-window {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      width: 350px;
+      max-width: calc(100vw - 40px);
+      height: 450px;
+      background: var(--surface);
+      border: 1px solid var(--accent-strong);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transform: scale(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s ease-in-out;
+      z-index: 1000;
+    }
+
+    #chat-window.open { transform: scale(1); }
+
+    #chat-messages {
+      flex-grow: 1;
+      padding: 15px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .message {
+      padding: 8px 12px;
+      border-radius: 10px;
+      max-width: 80%;
+      font-size: 14px;
+    }
+
+    .user-message {
+      background-color: #8b5cf6;
+      color: #fff;
+      align-self: flex-end;
+    }
+
+    .bot-message {
+      background-color: var(--surface-2);
+      color: var(--text);
+      align-self: flex-start;
+    }
+
+    #chat-input-container {
+      border-top: 1px solid var(--accent-strong);
+      padding: 10px;
+      display: flex;
+    }
+
+    #chat-input {
+      flex-grow: 1;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      outline: none;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    #chat-send-btn {
+      background: none;
+      border: none;
+      color: var(--accent-strong);
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    #chatbot-callout {
+      position: fixed;
+      bottom: 90px;
+      right: 25px;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    #chatbot-callout p {
+      background-color: var(--surface);
+      color: var(--accent);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--accent-strong);
+      font-size: 0.9em;
+    }
+
+    #chatbot-callout.hidden { opacity: 0; }
+
+    /* ===== Rodapé ===== */
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 32px;
+      padding: 28px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13.5px;
+    }
+
+    /* ===== Título "Projetos Relevantes" (grande, centralizado, troca de fonte) ===== */
+    .projetos-title {
+      text-align: center;
+      font-size: clamp(28px, 7vw, 70px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--text);
+      margin: 24px 0 44px;
+      /* mantém tudo em uma única linha, qualquer que seja a fonte */
+      white-space: nowrap;
+      /* mantém a altura estável enquanto a fonte muda */
+      min-height: 1.15em;
+    }
+
+    /* ===== Timeline de projetos (linha que se entrelaça) ===== */
+    .timeline-hint {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13.5px;
+      margin: -8px 0 30px;
+    }
+
+    .timeline {
+      position: relative;
+      width: 100%;
+    }
+
+    .timeline-svg {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .spine { stroke: #cfcadf; stroke-width: 3; }
+    .connector { stroke: #cfcadf; stroke-width: 1.4; opacity: 0.45; }
+    .node-dot { fill: #cfcadf; }
+
+    .weave {
+      fill: none;
+      stroke: #ef4444;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.5));
+    }
+
+    /* erase = "esconde" a linha vermelha na cor do fundo; spine-seg redesenha a
+       espinha por cima, criando o efeito de a vermelha passar ATRÁS em interseções alternadas */
+    .occ-erase { stroke: var(--bg); stroke-width: 9; }
+    .occ-spine { stroke: #cfcadf; stroke-width: 3; }
+
+    .nodes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .node {
+      position: absolute;
+      transform: translateY(-50%);
+      max-width: calc(50% - var(--off, 58px) - 8px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 18px;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.25;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: border-color 0.2s, color 0.2s, box-shadow 0.25s, transform 0.2s;
+    }
+
+    .node.on-right { left: calc(50% + var(--off, 58px)); text-align: left; }
+    .node.on-left { right: calc(50% + var(--off, 58px)); text-align: right; }
+
+    .node:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      transform: translateY(-50%) scale(1.03);
+    }
+
+    .node.active {
+      border-color: #ef4444;
+      color: var(--text);
+      box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.4), 0 6px 22px rgba(239, 68, 68, 0.14);
+    }
+
+    /* ===== Modal de projeto ===== */
+    #proj-details { display: none; }
+
+    .modal[hidden] { display: none; }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(6, 5, 12, 0.72);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-box {
+      position: relative;
+      width: 100%;
+      max-width: 980px;
+      max-height: 86vh;
+      overflow: auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px 26px 28px;
+      animation: modal-in 0.2s ease;
+    }
+
+    /* card em duas colunas: texto à esquerda, mídia (vídeo/print) à direita */
+    .modal-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 26px;
+      align-items: stretch;
+    }
+    .modal-content { display: flex; flex-direction: column; }
+    .modal-content .item { flex: 1; display: flex; flex-direction: column; }
+
+    .modal-media { position: sticky; top: 0; margin-top: 22px; }   /* desce a mídia p/ o X não cobri-la */
+
+    .modal-media a { display: block; }
+
+    .modal-media img,
+    .modal-media video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #000;
+    }
+
+    /* carrossel de prints (vários por projeto) */
+    .media-carousel { position: relative; }
+    .mc-viewport { overflow: hidden; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); aspect-ratio: 12 / 5; }
+    .mc-track { display: flex; height: 100%; transition: transform 0.35s ease; }
+    .mc-slide { flex: 0 0 100%; height: 100%; display: block; }
+    .mc-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .mc-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--border); background: rgba(20, 18, 28, 0.82);
+      color: var(--text); font-size: 22px; line-height: 1; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s;
+    }
+    .mc-prev { left: 8px; }
+    .mc-next { right: 8px; }
+    .mc-arrow:hover { border-color: var(--accent); }
+    .mc-dots { display: flex; gap: 7px; justify-content: center; margin-top: 12px; }
+    .mc-dot { width: 8px; height: 8px; border-radius: 50%; border: none; background: var(--border); cursor: pointer; padding: 0; }
+    .mc-dot.active { background: var(--accent); }
+
+    .media-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 260px;
+      height: 100%;
+      border: 1.5px dashed var(--border);
+      border-radius: 12px;
+      background: var(--surface-2);
+      color: var(--text-muted);
+      font-size: 13.5px;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .media-placeholder svg { width: 40px; height: 40px; fill: var(--accent); opacity: 0.75; }
+
+    @media (max-width: 760px) {
+      .modal-grid { grid-template-columns: 1fr; gap: 20px; }
+      .modal-media { position: static; }
+    }
+
+    @keyframes modal-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      z-index: 2;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text);
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .modal-close:hover { border-color: var(--accent); }
+
+    .modal-content .item {
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Stack fixado no rodapé do card, com borda divisória acima */
+    .modal-content .stack {
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+      padding-top: 14px;
+    }
+
+    /* ===== Competências: carrossel em arco (scroll-driven) ===== */
+    .skills-carousel {
+      position: relative;
+      width: 100%;
+      background: #0a0a0d;
+      min-height: 800vh;   /* quanto scroll a animação dura — mais alto = giro mais devagar */
+      overflow: clip;      /* contém o arco e o glow largos */
+    }
+
+    .sc-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 56px;
+    }
+
+    .sc-glow {
+      position: absolute;
+      left: 50%;
+      top: 40%;
+      transform: translateX(-50%);
+      width: 120vw;
+      height: 80vh;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(ellipse at center,
+        rgba(129, 140, 248, 0.22) 0%,
+        rgba(129, 140, 248, 0.08) 35%,
+        transparent 65%);
+      filter: blur(40px);
+    }
+
+    .sc-head {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 640px;
+      padding: 0 16px;
+      margin-top: 24px;   /* desce o bloco de título do carrossel */
+    }
+
+    .sc-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #818cf8;
+      margin-bottom: 12px;
+    }
+
+    .sc-title {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #f5f5f7;
+    }
+
+    .sc-sub {
+      margin-top: 14px;
+      font-size: clamp(14px, 2.5vw, 16px);
+      color: #a0a3ab;
+    }
+
+    /* pivô do arco, bem abaixo da viewport → arco bem achatado */
+    .sc-pivot {
+      position: absolute;
+      left: 50%;
+      bottom: -1000px;
+      width: 0;
+      height: 0;
+    }
+
+    .sc-stage {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform-origin: center center;
+    }
+
+    .sc-slot {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform-origin: 0 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .sc-slot-inner { transform: translate(-50%, -50%); }
+
+    .sc-card {
+      width: 188px;
+      height: 246px;
+      background: #0e0e12;
+      border: 6px solid #888;
+      border-radius: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      box-shadow: rgba(129, 140, 248, 0.18) 0 0 28px 0, rgba(0, 0, 0, 0.45) 0 16px 34px 0;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+      will-change: transform;
+    }
+
+    .sc-card img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 10px rgba(129, 140, 248, 0.25));
+    }
+
+    .sc-card .sc-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #e8e6f0;
+      text-align: center;
+      padding: 0 8px;
+    }
+
+    .sc-slot:hover { z-index: 30; }
+    .sc-slot:hover .sc-card {
+      transform: scale(1.12);
+      box-shadow: rgba(129, 140, 248, 0.42) 0 0 44px 0, rgba(0, 0, 0, 0.5) 0 26px 50px 0;
+    }
+
+    /* lista de habilidades só para impressão / fallback sem JS */
+    .skills-print { display: none; }
+
+    /* ===== Formação: cérebro 3D dirigido por scroll ===== */
+    .brain-scroll {
+      position: relative;
+      height: 750vh;            /* viagem (1ª) + itens (2ª) + volta ao meio (3ª) */
+      background: #0d0b13;
+    }
+    .brain-pin {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .brain-heading {
+      position: absolute;
+      left: 7vw;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      z-index: 3;
+      margin: 0;
+      white-space: nowrap;
+      font-size: clamp(26px, 4.5vw, 52px);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      will-change: opacity;
+    }
+    #brain-model {
+      position: absolute;
+      left: 70%;                /* ponto inicial; left/top animados via JS */
+      top: 46%;
+      width: 68vh;
+      height: 68vh;
+      transform: translate(-50%, -50%);
+      background-color: transparent;
+      --poster-color: transparent;
+      pointer-events: none;
+    }
+    .formacao-print { display: none; }
+
+    /* itens de formação que surgem (linha desenha, depois o texto) à direita */
+    .edu-item {
+      position: absolute;
+      width: max-content;
+      max-width: 48vw;
+      z-index: 2;
+    }
+    #edu-1 { top: 27%; left: 47%; }
+    #edu-2 { top: 45.5%; left: 50%; }
+    #edu-3 { top: 64%; left: 47%; }
+    .edu-txt {
+      margin: 0;
+      opacity: 0;
+      color: #fff;
+      font-size: clamp(13px, 1.4vw, 19px);
+      font-weight: 600;
+      white-space: nowrap;
+      will-change: opacity;
+    }
+    .edu-line {
+      display: block;
+      height: 2px;
+      margin-top: 9px;
+      width: 100%;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left center;
+      will-change: transform;
+    }
+
+    /* ===== Impressão (Ctrl+P vira um PDF limpo) ===== */
+    @media print {
+      html {
+        --bg: #fff;
+        --surface: #fff;
+        --surface-2: #f3f4f6;
+        --text: #111;
+        --text-muted: #444;
+        --border: #ddd;
+        --accent: #6d28d9;
+        --accent-soft: #f3eefe;
+      }
+      body, html { background: #fff; }
+      .topbar, .chatbot-container, #chat-window,
+      #chatbot-callout, #contato, details { display: none !important; }
+      .hero {
+        --surface: #fff;
+        --text: #111;
+        --text-muted: #444;
+        --accent: #6d28d9;
+        --border: #ddd;
+        background: #fff;
+        border-bottom: none;
+      }
+      .hero-inner { padding: 12px 0 20px; gap: 24px; }
+      .hero .badge, .hero .cta { display: none !important; }
+      .hero h1 em, .hero .role em { color: #111; }
+      .hero-photo { transform: none; }
+      .hero-photo::before { display: none; }
+      .profile-pic { width: 110px; height: 110px; border-color: #ddd; }
+      section { padding: 14px 0; }
+      #experiencia { display: none !important; }
+      .exp-print { display: block !important; }
+      .exp-print .item + .item { margin-top: 14px; }
+      .timeline, .timeline-hint, #proj-modal { display: none !important; }
+      #proj-details { display: block !important; }
+      #proj-details .item + .item, #proj-details .subsection-title { margin-top: 14px; }
+      .skills-carousel { display: none !important; }
+      .skills-print { display: block !important; }
+      .brain-scroll { display: none !important; }
+      .formacao-print { display: block !important; }
+      .formacao-print .item + .item { margin-top: 14px; }
+      .item, .skill-group, .cert { break-inside: avoid; }
+      a { color: #111; }
+    }
+
+    @media (max-width: 560px) {
+      .item { padding: 18px; }
+      .cert { flex-wrap: wrap; }
+      .cert .issuer { margin-left: 30px; }
+    }
+  </style>
+</head>
+<body class="lang-pt">
+
+  <!-- ============================================================
+       COMO EDITAR: todo texto aparece duas vezes — uma com class="pt"
+       (português) e outra com class="en" (inglês). Edite os dois.
+       ============================================================ -->
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="logo" href="#">Bernardo Viana</a>
+      <div class="actions">
+        <a class="chip" href="mailto:bernardoviana2005@gmail.com">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.2-8 5-8-5V6l8 5 8-5v2.2z"/></svg>
+          bernardoviana2005@gmail.com
+        </a>
+        <a class="chip" href="tel:+5547992405979">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+          (47) 99240-5979
+        </a>
+        <a class="chip" href="https://www.linkedin.com/in/bernardo-viana-07b48b274/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <button class="btn" id="lang-toggle" title="Switch language">
+        <span class="pt">🇺🇸 English</span><span class="en">🇧🇷 Português</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== CABEÇALHO ===== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>Bernardo Viana</h1>
+        <p class="role">
+          <span class="pt">Desenvolvedor Full Stack<br>&amp;<br><em>Engenheiro de IA</em></span>
+          <span class="en">Full Stack Developer<br>&amp;<br><em>AI Engineer</em></span>
+        </p>
+
+      <p class="summary pt">
+        Construo e coloco no ar sites, e-commerces e sistemas completos de ponta a ponta,
+        da arquitetura ao deploy em produção. Mantenho dezenas de agentes de IA conversacional
+        em produção atendendo clientes pagantes (qualificação de leads, agendamento e pedidos
+        autônomos, com RAG e orquestração de agentes), além de e-commerces e aplicações web
+        sob medida.
+      </p>
+      <p class="summary en">
+        I build and ship websites, e-commerce stores and complete systems end to end, from
+        architecture to production deployment. I maintain dozens of conversational AI agents
+        in production serving paying customers (lead qualification, scheduling and autonomous
+        ordering, with RAG and agent orchestration), alongside e-commerce stores and custom
+        web applications.
+      </p>
+
+      <a class="cta" href="#contato">
+        <span class="pt">Entrar em contato</span><span class="en">Get in touch</span> →
+      </a>
+      </div>
+
+      <div class="hero-photo">
+        <img class="profile-pic" src="img/perfil.jpg" alt="Foto de Bernardo Viana">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIÊNCIA (pin + reveal lateral, estilo dope.security) ===== -->
+  <section class="exp-scroll" id="experiencia">
+    <div class="exp-pin">
+      <p class="exp-heading"><span class="pt">Experiência Profissional</span><span class="en">Professional Experience</span></p>
+
+      <!-- FLECHA ÚNICA em zigue-zague: a mesma cresce, leva o "IA", para e vira divisor -->
+      <svg class="exp-zig" id="exp-zig" preserveAspectRatio="none" aria-hidden="true"><path id="exp-zig-path"></path><path id="exp-zig-path2"></path></svg>
+      <div class="exp-line-head" id="exp-line-head"></div>
+      <div class="exp-line-head" id="exp-line-head2"></div>
+      <div class="exp-ia" id="exp-ia" aria-hidden="true"><span class="pt">Inteligência Artificial</span><span class="en">Artificial Intelligence</span></div>
+      <div class="exp-ia" id="exp-web" aria-hidden="true">Websites</div>
+      <div class="exp-ia" id="exp-parkin" aria-hidden="true">Parkin</div>
+
+      <!-- "Integração de vídeo/áudio por IA": surge quando a ponta passa por ela (tela da IA) -->
+      <p class="exp-aifeat" id="exp-aifeat"><span class="pt">Integração de vídeo/áudio por IA</span><span class="en">AI video/audio integration</span></p>
+
+      <!-- aro "marketplace": só borda + texto curvado girando (surge na tela do Parkin) -->
+      <div class="exp-sphere" id="exp-sphere" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <path id="exp-sphere-path" d="M 100,100 m -86,0 a 86,86 0 1,1 172,0 a 86,86 0 1,1 -172,0"/>
+          </defs>
+          <circle class="exp-sphere-ring" cx="100" cy="100" r="94"/>
+          <text class="exp-sphere-text"><textPath href="#exp-sphere-path" startOffset="0">marketplace · marketplace · marketplace · marketplace · marketplace · </textPath></text>
+        </svg>
+      </div>
+
+      <!-- rótulos da tela do Parkin (losangos) -->
+      <p class="exp-pk" id="exp-pk-pwa" aria-hidden="true"><span class="pt">PWA instalável</span><span class="en">Installable PWA</span></p>
+      <p class="exp-pk" id="exp-pk-geo" aria-hidden="true"><span class="pt">Geolocalização</span><span class="en">Geolocation</span></p>
+      <p class="exp-pk" id="exp-pk-chat" aria-hidden="true"><span class="pt">Chat em tempo real</span><span class="en">Real-time chat</span></p>
+      <p class="exp-pk" id="exp-pk-pay" aria-hidden="true"><span class="pt">Pagamento integrado</span><span class="en">Integrated payment</span></p>
+      <p class="exp-pk" id="exp-pk-link"><a href="https://parkin.cloud/" target="_blank" rel="noopener">parkin.cloud</a></p>
+
+      <!-- texto dentro da curva central da onda (tela do Websites) -->
+      <p class="exp-ec" id="exp-ec">
+        <span class="pt">Desenvolvimento de e-commerces <strong>completos</strong></span>
+        <span class="en">Building <strong>complete</strong> e-commerce stores</span>
+      </p>
+      <p class="exp-stack" id="exp-stack">React/TypeScript</p>
+
+      <!-- "Registro de domínio" acima do "Websites" -->
+      <p class="exp-reg" id="exp-reg"><span class="pt">Registro de domínio</span><span class="en">Domain registration</span></p>
+      <p class="exp-host" id="exp-host"><span class="pt">Deploy &amp; hospedagem</span><span class="en">Deployment &amp; hosting</span></p>
+
+      <!-- texto principal (em cima) e detalhes (embaixo) do divisor -->
+      <p class="exp-div-top" id="exp-div-top">
+        <span class="pt">Desenvolvimento e operação de <strong>dezenas de agentes de IA conversacional em produção</strong></span>
+        <span class="en">Development and operation of <strong>dozens of conversational AI agents in production</strong></span>
+      </p>
+      <p class="exp-div-bottom" id="exp-div-bottom">
+        <span class="pt">atendimento, qualificação de leads, agendamento e pedidos, com orquestração de agentes, RAG e integrações de visão e áudio por IA.</span>
+        <span class="en">customer service, lead qualification, scheduling and ordering, with agent orchestration, RAG and AI vision and audio integrations.</span>
+      </p>
+
+      <!-- título: fica fixo à esquerda como contexto -->
+      <div class="exp-title" id="exp-title">
+        <h2 class="exp-title-h">
+          <span class="pt">Desenvolvedor<br>Full Stack</span>
+          <span class="en">Full Stack<br>Developer</span>
+        </h2>
+      </div>
+
+      <!-- textos: entram pela direita e se revezam conforme você rola -->
+      <div class="exp-texts" id="exp-texts">
+        <div class="exp-text-item">
+          <p class="exp-text pt">Desenvolvimento e operação de <strong>dezenas de agentes de IA conversacional em produção</strong> (atendimento, qualificação de leads, agendamento e pedidos), com orquestração de agentes, RAG e integrações de visão e áudio por IA.</p>
+          <p class="exp-text en">Development and operation of <strong>dozens of conversational AI agents in production</strong> (customer service, lead qualification, scheduling and ordering), with agent orchestration, RAG and AI vision/audio integrations.</p>
+        </div>
+        <div class="exp-text-item">
+          <p class="exp-text pt">Desenvolvimento de <strong>e-commerces completos</strong> para clientes da empresa, do frontend (React/TypeScript) ao backend e deploy.</p>
+          <p class="exp-text en">Built <strong>complete e-commerce stores</strong> for the company's clients, from the frontend (React/TypeScript) to the backend and deployment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- conteúdo completo da experiência (aparece só na impressão / PDF) -->
+  <div class="container exp-print">
+    <h2 class="section-title"><span class="pt">Experiência Profissional</span><span class="en">Professional Experience</span></h2>
+    <article class="item">
+      <div class="item-head">
+        <h3><span class="pt">Desenvolvedor Full Stack</span><span class="en">Full Stack Developer</span></h3>
+        <span class="period"><span class="pt">abr/2026 — atual</span><span class="en">Apr 2026 — present</span></span>
+      </div>
+      <p class="org">AgentPro IA · Joinville/SC</p>
+      <ul class="pt">
+        <li>Desenvolvimento e operação de <strong>dezenas de agentes de IA conversacional em produção</strong> (atendimento, qualificação de leads, agendamento e pedidos), com orquestração de agentes, RAG e integrações de visão e áudio por IA.</li>
+        <li>Desenvolvimento de <strong>e-commerces completos</strong> para clientes da empresa, do frontend (React/TypeScript) ao backend e deploy.</li>
+        <li>Construção do <strong>provador virtual de óculos em 3D</strong> com precisão optométrica para e-commerces de ótica (detalhes em Projetos Relevantes).</li>
+        <li>Arquitetura e manutenção de <strong>base de conhecimento de engenharia versionada</strong> (Git/Obsidian) que permite à frota de serviços se auto-documentar.</li>
+        <li>Infraestrutura e deploy: Docker, Linux e servidor administrado com operação 24/7.</li>
+      </ul>
+      <ul class="en">
+        <li>Development and operation of <strong>dozens of conversational AI agents in production</strong> (customer service, lead qualification, scheduling and ordering), with agent orchestration, RAG and AI vision/audio integrations.</li>
+        <li>Built <strong>complete e-commerce stores</strong> for the company's clients, from the frontend (React/TypeScript) to the backend and deployment.</li>
+        <li>Built the <strong>3D virtual eyewear try-on</strong> with optometric precision for optical e-commerce (details under Featured Projects).</li>
+        <li>Architecture and maintenance of a <strong>versioned engineering knowledge base</strong> (Git/Obsidian) that lets the service fleet self-document.</li>
+        <li>Infrastructure and deployment: Docker, Linux and a self-managed server running 24/7.</li>
+      </ul>
+    </article>
+    <article class="item">
+      <div class="item-head">
+        <h3><span class="pt">Jovem Aprendiz em Automação de Sistemas</span><span class="en">Systems Automation Apprentice</span></h3>
+        <span class="period"><span class="pt">jan/2025 — dez/2025</span><span class="en">Jan 2025 — Dec 2025</span></span>
+      </div>
+      <p class="org">Whirlpool Corporation · Joinville/SC</p>
+      <ul class="pt">
+        <li>Implementação de scripts e soluções de automação para otimizar processos internos da fábrica.</li>
+        <li>Desenvolvimento do sistema web <strong>"Visão de Máquinas"</strong> (Django): visualização de peças por máquina, autenticação e painel administrativo.</li>
+        <li>Modelo de <strong>machine learning</strong> (Scikit-learn/Pandas) para prever probabilidade de falha de componentes industriais e otimizar manutenção.</li>
+      </ul>
+      <ul class="en">
+        <li>Implemented automation scripts and solutions to streamline internal factory processes.</li>
+        <li>Built the <strong>"Machine View"</strong> web system (Django): per-machine parts visualization, authentication and an admin panel.</li>
+        <li><strong>Machine learning</strong> model (Scikit-learn/Pandas) to predict failure probability of industrial components and optimize maintenance.</li>
+      </ul>
+    </article>
+  </div>
+
+  <!-- ===== FORMAÇÃO (cérebro 3D dirigido por scroll) ===== -->
+  <section class="brain-scroll" id="formacao">
+    <div class="brain-pin">
+      <p class="brain-heading"><span class="pt">Formação</span><span class="en">Education</span></p>
+      <model-viewer id="brain-model" src="human_brain.glb?v=2"
+        alt="Cérebro humano em 3D" disable-zoom disable-pan disable-tap
+        interaction-prompt="none" camera-orbit="90deg 88deg auto"
+        exposure="1" tone-mapping="neutral" shadow-intensity="0"
+        loading="eager"></model-viewer>
+
+      <!-- itens de formação: surgem um a um (linha → texto) ao continuar rolando -->
+      <div class="edu-item" id="edu-1">
+        <p class="edu-txt" id="edu-txt-1"><span class="pt">Graduação em Análise e Desenvolvimento de Sistemas</span><span class="en">B.Sc. in Systems Analysis and Development</span></p>
+        <span class="edu-line" id="edu-line-1"></span>
+      </div>
+      <div class="edu-item" id="edu-2">
+        <p class="edu-txt" id="edu-txt-2"><span class="pt">Técnico em Ciência de Dados</span><span class="en">Data Science Technical Program</span></p>
+        <span class="edu-line" id="edu-line-2"></span>
+      </div>
+      <div class="edu-item" id="edu-3">
+        <p class="edu-txt" id="edu-txt-3"><span class="pt">Técnico em Programação de Sistemas</span><span class="en">Systems Programming Technical Program</span></p>
+        <span class="edu-line" id="edu-line-3"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- formação completa — aparece só na impressão / PDF -->
+  <div class="container formacao-print">
+    <h2 class="section-title"><span class="pt">Formação</span><span class="en">Education</span></h2>
+    <article class="item">
+      <div class="item-head">
+        <h3><span class="pt">Análise e Desenvolvimento de Sistemas</span><span class="en">Systems Analysis and Development</span></h3>
+        <span class="period"><span class="pt">jun/2024 — dez/2026 (em conclusão)</span><span class="en">Jun 2024 — Dec 2026 (in progress)</span></span>
+      </div>
+      <p class="org">UniSociesc · Joinville/SC</p>
+    </article>
+    <article class="item">
+      <div class="item-head">
+        <h3><span class="pt">Programador de Sistemas (Aprendizagem Industrial)</span><span class="en">Systems Programmer (Industrial Apprenticeship)</span></h3>
+        <span class="period"><span class="pt">fev/2025 — dez/2025</span><span class="en">Feb 2025 — Dec 2025</span></span>
+      </div>
+      <p class="org">SENAI/SC · Joinville</p>
+    </article>
+    <article class="item">
+      <div class="item-head">
+        <h3><span class="pt">Técnico em Ciência de Dados</span><span class="en">Data Science Technical Program</span></h3>
+        <span class="period">2020 — 2023</span>
+      </div>
+      <p class="org">E.E.B. Holando Marcelino Gonçalves · Jaraguá do Sul/SC</p>
+    </article>
+  </div>
+
+  <main class="container">
+
+    <!-- ===== PROJETOS RELEVANTES ===== -->
+    <section id="projetos">
+      <h2 class="projetos-title" id="projetos-title">
+        <span class="pt">Projetos Relevantes</span><span class="en">Featured Projects</span>
+      </h2>
+      <div class="timeline" id="timeline">
+        <svg class="timeline-svg" id="timeline-svg" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <div class="nodes" id="nodes">
+          <button class="node" type="button" data-proj="0"><span class="pt">Provador Virtual de Óculos 3D</span><span class="en">3D Virtual Eyewear Try-On</span></button>
+          <button class="node" type="button" data-proj="1">Parkin.cloud</button>
+          <button class="node" type="button" data-proj="2"><span class="pt">Homepage 3D interativa</span><span class="en">Interactive 3D Homepage</span></button>
+          <button class="node" type="button" data-proj="3"><span class="pt">Assistente Pessoal com IA</span><span class="en">Personal AI Assistant</span></button>
+          <button class="node" type="button" data-proj="4"><span class="pt">Sistema de Gerenciamento de Estoque</span><span class="en">Inventory Management System</span></button>
+          <button class="node" type="button" data-proj="5"><span class="pt">IA Preditiva de Vida Útil de Peças</span><span class="en">Predictive AI for Part Lifespan</span></button>
+          <button class="node" type="button" data-proj="6"><span class="pt">Bot de Day Trade de Criptomoedas</span><span class="en">Crypto Day Trading Bot</span></button>
+        </div>
+      </div>
+
+      <div id="proj-details">
+      <article class="item">
+        <div class="item-head">
+          <h3><span class="pt">Provador Virtual de Óculos 3D</span><span class="en">3D Virtual Eyewear Try-On</span></h3>
+        </div>
+        <p class="desc pt">
+          Try-on em 3D real para e-commerces de ótica: o cliente escaneia o rosto uma vez e prova
+          qualquer óculos do catálogo com <strong>encaixe fisicamente correto</strong> e
+          <strong>precisão optométrica</strong>. Cadeia de calibrações converte o scan 3D (escala
+          arbitrária) em milímetros reais: normalização canônica de cada óculos, escala do rosto
+          por foto com cartão de referência (validações anti-paralaxe), distância naso-pupilar por
+          olho com MediaPipe (478 landmarks) e encaixe automático 100% derivado da geometria do
+          rosto (vertex distance 13mm, assentamento no nariz, hastes pelo contato real com a
+          orelha), sem "magic numbers". Permite
+          gerar a especificação da lente com grau para a ótica.
+        </p>
+        <p class="desc en">
+          True 3D try-on for optical e-commerce: the customer scans their face once and tries on
+          any frame in the catalog with a <strong>physically correct fit</strong> and
+          <strong>optometric precision</strong>. A calibration chain converts the 3D scan
+          (arbitrary scale) into real millimeters: canonical normalization of each frame, face
+          scaling from a photo with a reference card (anti-parallax validations), per-eye
+          naso-pupillary distance with MediaPipe (478 landmarks) and automatic fit derived 100%
+          from face geometry (13mm vertex distance, nose seating, temples placed by actual ear
+          contact) — no magic numbers.
+          Generates the prescription lens specification for the optician.
+        </p>
+        <p class="stack"><strong>Stack:</strong> React + TypeScript, Three.js/R3F, MediaPipe, Meshy.ai, Supabase</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head">
+          <h3>Parkin.cloud</h3>
+        </div>
+        <p class="desc pt">
+          <strong>Marketplace de estacionamento</strong>: plataforma completa construída de ponta a ponta. Produto, código, infraestrutura e deploy.
+        </p>
+        <p class="desc en">
+          <strong>Parking marketplace</strong>: complete platform built end to end. Product, code, infrastructure and deployment.
+        </p>
+        <p class="stack"><strong>Stack:</strong> Django, React, TypeScript, API Asaas, Google Maps</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head">
+          <h3><span class="pt">Homepage 3D interativa</span><span class="en">Interactive 3D Homepage</span></h3>
+        </div>
+        <p class="desc pt">
+          Landing page com carrossel em arco elíptico controlado pelo scroll, miniaturas 3D
+          pré-renderizadas em headless (custo zero de 3D em runtime) e tela de loading
+          sincronizada com o carregamento real dos modelos.
+        </p>
+        <p class="desc en">
+          Landing page with a scroll-driven elliptical arc carousel, 3D thumbnails pre-rendered
+          headlessly (zero 3D runtime cost) and a loading screen synced to the actual model
+          loading.
+        </p>
+        <p class="stack"><strong>Stack:</strong> React, TypeScript, R3F, Tailwind, Blender</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head">
+          <h3><span class="pt">Assistente Pessoal com IA</span><span class="en">Personal AI Assistant</span></h3>
+          <span class="period"><span class="pt">neste site →</span><span class="en">on this site →</span></span>
+        </div>
+        <p class="desc pt">
+          O chatbot flutuante no canto desta página: assistente com base de conhecimento
+          personalizada que responde perguntas de recrutadores em tempo real. Backend em Flask
+          gerencia as requisições, protege a chave da API e se comunica com o modelo Gemini.
+        </p>
+        <p class="desc en">
+          The floating chatbot in the corner of this page: an assistant with a custom knowledge
+          base that answers recruiter questions in real time. A Flask backend handles requests,
+          protects the API key and talks to the Gemini model.
+        </p>
+        <p class="stack"><strong>Stack:</strong> Python, Flask, Google Gemini API, JavaScript</p>
+      </article>
+
+      <h3 class="subsection-title">
+        <span class="pt">Primeiros projetos</span><span class="en">Earlier projects</span>
+      </h3>
+
+      <article class="item">
+        <div class="item-head">
+          <h3><span class="pt">Sistema de Gerenciamento de Estoque</span><span class="en">Inventory Management System</span></h3>
+        </div>
+        <p class="desc pt">
+          Aplicação web para controle de estoque em ambiente empresarial: cadastro de produtos,
+          registro de entradas e saídas, listagem com busca e filtros, painel administrativo
+          (Django Admin) e histórico preciso do inventário. Implantada na nuvem (PythonAnywhere)
+          para acesso remoto e seguro.
+        </p>
+        <p class="desc en">
+          Web application for business inventory control: product registration, inbound/outbound
+          tracking, searchable and filterable listings, an admin panel (Django Admin) and an
+          accurate inventory history. Deployed to the cloud (PythonAnywhere) for secure remote
+          access.
+        </p>
+        <p class="stack"><strong>Stack:</strong> Python, Django, HTML, Tailwind CSS, PythonAnywhere</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head">
+          <h3><span class="pt">IA Preditiva de Vida Útil de Peças</span><span class="en">Predictive AI for Part Lifespan</span></h3>
+        </div>
+        <p class="desc pt">
+          Modelo de machine learning que prevê a vida útil de componentes industriais a partir de
+          dados históricos de operação e falhas, substituindo a manutenção reativa por uma
+          estratégia preditiva. Inclui análise exploratória, engenharia de features, treinamento
+          de modelo de classificação, validação com métricas (acurácia, precisão, recall) e uma
+          interface de simulação para o usuário receber a previsão.
+        </p>
+        <p class="desc en">
+          Machine learning model that predicts the lifespan of industrial components from
+          historical operation and failure data, replacing reactive maintenance with a predictive
+          strategy. Includes exploratory analysis, feature engineering, classification model
+          training, validation metrics (accuracy, precision, recall) and a simulation interface
+          for users to get predictions.
+        </p>
+        <p class="stack"><strong>Stack:</strong> Python, Pandas, Scikit-learn, Matplotlib/Seaborn, Jupyter, Flask</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head">
+          <h3><span class="pt">Bot de Day Trade de Criptomoedas</span><span class="en">Crypto Day Trading Bot</span></h3>
+        </div>
+        <p class="desc pt">
+          Bot de scalping conectado à API da Binance via CCXT: monitora o mercado em tempo real,
+          calcula RSI para decidir compras, executa ordens programaticamente e gerencia risco com
+          alvo de lucro e stop-loss com janela de confirmação de 10 minutos antes da venda.
+        </p>
+        <p class="desc en">
+          Scalping bot connected to the Binance API via CCXT: monitors the market in real time,
+          computes RSI to decide entries, places orders programmatically and manages risk with a
+          profit target and a stop-loss that uses a 10-minute confirmation window before selling.
+        </p>
+        <p class="stack"><strong>Stack:</strong> Python, CCXT, Binance API, WebSockets</p>
+      </article>
+
+      </div><!-- /#proj-details -->
+
+      <div class="modal" id="proj-modal" hidden>
+        <div class="modal-backdrop" data-close></div>
+        <div class="modal-box" role="dialog" aria-modal="true" aria-label="Detalhes do projeto">
+          <button class="modal-close" type="button" data-close aria-label="Fechar">&times;</button>
+          <div class="modal-grid">
+            <div class="modal-content" id="modal-content"></div>
+            <div class="modal-media" id="modal-media"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== COMPETÊNCIAS (carrossel em arco controlado por scroll) ===== -->
+  <section class="skills-carousel" id="competencias">
+    <div class="sc-sticky">
+      <div class="sc-glow"></div>
+      <div class="sc-head">
+        <p class="sc-eyebrow"><span class="pt">Competências</span><span class="en">Skills</span></p>
+        <h2 class="sc-title">
+          <span class="pt">Tecnologias que eu domino</span><span class="en">Technologies I work with</span>
+        </h2>
+        <p class="sc-sub">
+          <span class="pt">Dezenas de ferramentas no dia a dia, do front ao deploy.</span>
+          <span class="en">Dozens of tools in daily use, from front end to deployment.</span>
+        </p>
+      </div>
+      <div class="sc-pivot">
+        <div class="sc-stage" id="sc-stage"></div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+
+    <!-- lista de habilidades (aparece só na impressão / PDF) -->
+    <div class="skills-print">
+      <h2 class="section-title"><span class="pt">Habilidades</span><span class="en">Skills</span></h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4><span class="pt">Linguagens</span><span class="en">Languages</span></h4>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">TypeScript/JavaScript (ES6+)</span>
+            <span class="tag">SQL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4><span class="pt">IA</span><span class="en">AI</span></h4>
+          <div class="tags">
+            <span class="tag">LangGraph</span>
+            <span class="tag">RAG<span class="pt"> (busca semântica)</span><span class="en"> (semantic search)</span></span>
+            <span class="tag"><span class="pt">Orquestração de agentes</span><span class="en">Agent orchestration</span></span>
+            <span class="tag">LLMOps</span>
+            <span class="tag"><span class="pt">APIs de LLM (Gemini, OpenAI, Claude)</span><span class="en">LLM APIs (Gemini, OpenAI, Claude)</span></span>
+            <span class="tag"><span class="pt">Visão computacional</span><span class="en">Computer vision</span></span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">Pandas</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Backend</h4>
+          <div class="tags">
+            <span class="tag">FastAPI</span>
+            <span class="tag">Django</span>
+            <span class="tag">Flask</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag"><span class="pt">Integração de APIs</span><span class="en">API integration</span></span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Frontend</h4>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">Three.js / React Three Fiber</span>
+            <span class="tag">Tailwind CSS</span>
+            <span class="tag">HTML/CSS</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>DevOps</h4>
+          <div class="tags">
+            <span class="tag">Docker</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Git</span>
+            <span class="tag"><span class="pt">Deploy e operação em produção</span><span class="en">Production deployment &amp; operations</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CONTATO ===== -->
+    <section id="contato">
+      <h2 class="type-title"><span id="type-text"></span><span class="type-caret" aria-hidden="true">_</span></h2>
+
+      <form class="contact-form" action="https://formspree.io/f/mqagvnpp" method="POST">
+        <div class="form-row">
+          <div class="field">
+            <label for="name"><span class="pt">Nome</span><span class="en">Name</span></label>
+            <input type="text" name="name" id="name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="subject"><span class="pt">Assunto</span><span class="en">Subject</span></label>
+          <input type="text" name="subject" id="subject" required>
+        </div>
+        <div class="field">
+          <label for="message"><span class="pt">Mensagem</span><span class="en">Message</span></label>
+          <textarea name="message" id="message" rows="4" required></textarea>
+        </div>
+        <button type="submit">
+          <span class="pt">Enviar Mensagem</span><span class="en">Send Message</span>
+        </button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <span class="pt">© 2026 Bernardo Viana</span>
+      <span class="en">© 2026 Bernardo Viana</span>
+    </div>
+  </footer>
+
+  <!-- ===== Chatbot com IA ===== -->
+  <div id="chatbot-callout">
+    <p><span class="pt">Conheça meu chatbot!</span><span class="en">Meet my chatbot!</span></p>
+  </div>
+  <div class="chatbot-container" id="chatbot-icon">💬</div>
+  <div id="chat-window">
+    <div id="chat-messages">
+      <div class="message bot-message">
+        <span class="pt">Olá! Sou o assistente virtual do Bernardo. Como posso ajudar?</span>
+        <span class="en">Hi! I'm Bernardo's virtual assistant. How can I help?</span>
+      </div>
+    </div>
+    <div id="chat-input-container">
+      <input type="text" id="chat-input" placeholder="Digite sua pergunta...">
+      <button id="chat-send-btn">&#10148;</button>
+    </div>
+  </div>
+
+  <script>
+    // ===== Alternância PT/EN (lembra a escolha do visitante) =====
+    const langToggle = document.getElementById('lang-toggle');
+    const chatInput = document.getElementById('chat-input');
+
+    function setLang(lang) {
+      document.body.classList.remove('lang-pt', 'lang-en');
+      document.body.classList.add('lang-' + lang);
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+      chatInput.placeholder = lang === 'pt' ? 'Digite sua pergunta...' : 'Type your question...';
+      localStorage.setItem('lang', lang);
+    }
+
+    if (localStorage.getItem('lang') === 'en') setLang('en');
+
+    langToggle.addEventListener('click', () => {
+      setLang(document.body.classList.contains('lang-pt') ? 'en' : 'pt');
+    });
+
+    // ===== Chatbot com IA (via Cloudflare Worker — chave protegida no servidor) =====
+    const CHAT_API = ''; // URL do Cloudflare Worker (preenchida apos o deploy)
+
+    const chatbotIcon = document.getElementById('chatbot-icon');
+    const chatWindow = document.getElementById('chat-window');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatSendBtn = document.getElementById('chat-send-btn');
+
+    chatbotIcon.addEventListener('click', () => {
+      chatWindow.classList.toggle('open');
+    });
+
+    function appendMessage(text, className) {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message', className);
+      messageDiv.innerText = text;
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      return messageDiv;
+    }
+
+    async function sendMessage() {
+      const question = chatInput.value.trim();
+      if (question === '') return;
+
+      appendMessage(question, 'user-message');
+      chatInput.value = '';
+
+      const isPt = document.body.classList.contains('lang-pt');
+      const thinkingMessage = appendMessage(isPt ? 'Pensando...' : 'Thinking...', 'bot-message');
+
+      if (!CHAT_API) {
+        thinkingMessage.innerText = isPt
+          ? 'O chatbot está sendo configurado, volte em breve! 🙂'
+          : 'The chatbot is being set up, check back soon! 🙂';
+        return;
+      }
+
+      try {
+        const response = await fetch(CHAT_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question: question, lang: isPt ? 'pt' : 'en' }),
+        });
+        const data = await response.json().catch(() => ({}));
+        thinkingMessage.innerText = data.response
+          || (isPt ? 'Não consegui gerar uma resposta agora.' : "Couldn't generate a response.");
+      } catch (error) {
+        console.error('Erro no chatbot:', error);
+        thinkingMessage.innerText = isPt
+          ? 'Desculpe, tive um problema. Tente novamente mais tarde.'
+          : 'Sorry, something went wrong. Please try again later.';
+      }
+    }
+
+    chatSendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+
+    // Callout do chatbot some após 15 segundos
+    setTimeout(() => {
+      document.getElementById('chatbot-callout').classList.add('hidden');
+    }, 15000);
+
+    // ===== Título "Projetos Relevantes": troca a fonte a cada 0,5s =====
+    (function () {
+      const title = document.getElementById('projetos-title');
+      if (!title) return;
+      const fonts = [
+        "'Inter', sans-serif",
+        "'Playfair Display', serif",
+        "'Bebas Neue', sans-serif",
+        "'Abril Fatface', serif",
+        "'Caveat', cursive",
+        "'Oswald', sans-serif",
+        "'Righteous', sans-serif"
+      ];
+      let i = 0;
+      setInterval(() => {
+        i = (i + 1) % fonts.length;
+        title.style.fontFamily = fonts[i];
+      }, 500);
+    })();
+
+    // ===== Timeline de projetos: linha vermelha que se entrelaça no scroll =====
+    (function () {
+      const timeline = document.getElementById('timeline');
+      if (!timeline) return;
+      const svg = document.getElementById('timeline-svg');
+      const buttons = Array.from(document.querySelectorAll('#nodes .node'));
+      const SVGNS = 'http://www.w3.org/2000/svg';
+      const n = buttons.length;
+
+      let weave, weaveLen = 0, nodeYs = [], pathTop = 0, pathBottom = 1;
+
+      function el(tag, attrs) {
+        const e = document.createElementNS(SVGNS, tag);
+        for (const k in attrs) e.setAttribute(k, attrs[k]);
+        return e;
+      }
+
+      function build() {
+        const compact = timeline.clientWidth < 560;
+        const rowH = compact ? 128 : 150;
+        const amp = compact ? 30 : 44;
+        const padTop = 60, padBot = 80;
+        const cx = 60; // centro do viewBox (largura 120)
+        const H = padTop + n * rowH + padBot;
+
+        timeline.style.height = H + 'px';
+        svg.setAttribute('viewBox', '0 0 120 ' + H);
+        svg.style.height = H + 'px';
+        svg.innerHTML = '';
+
+        const y0 = padTop;            // âncora de fase (1ª interseção)
+        pathTop = 0;
+        pathBottom = padTop + n * rowH;
+
+        // ---- espinha (linha principal) ----
+        svg.appendChild(el('line', { class: 'spine', x1: cx, x2: cx, y1: pathTop, y2: pathBottom }));
+
+        // ---- conectores + pontos (espinha -> botão) ----
+        const connG = el('g', {});
+        svg.appendChild(connG);
+
+        // ---- linha vermelha (onda em torno da espinha) ----
+        let d = '';
+        for (let y = pathTop; y <= pathBottom; y += 3) {
+          const x = cx + amp * Math.sin((y - y0) * Math.PI / rowH);
+          d += (d ? 'L' : 'M') + x.toFixed(2) + ' ' + y.toFixed(2) + ' ';
+        }
+        weave = el('path', { class: 'weave', d: d.trim() });
+        svg.appendChild(weave);
+
+        // ---- occluders: a vermelha "passa atrás" em interseções alternadas ----
+        const occG = el('g', {});
+        svg.appendChild(occG);
+        for (let k = 1; k <= n; k += 2) {
+          const yk = padTop + k * rowH;
+          if (yk > pathBottom) break;
+          occG.appendChild(el('line', { class: 'occ-erase', x1: cx, x2: cx, y1: yk - 12, y2: yk + 12 }));
+          occG.appendChild(el('line', { class: 'occ-spine', x1: cx, x2: cx, y1: yk - 12, y2: yk + 12 }));
+        }
+
+        // ---- nós: posiciona botões alternando lados ----
+        nodeYs = [];
+        buttons.forEach((btn, i) => {
+          const y = padTop + rowH / 2 + i * rowH;
+          nodeYs.push(y);
+          const right = i % 2 === 0;
+          btn.style.top = y + 'px';
+          btn.style.setProperty('--off', (amp + 14) + 'px');
+          btn.classList.toggle('on-right', right);
+          btn.classList.toggle('on-left', !right);
+          // conector até a borda do bulbo
+          connG.appendChild(el('line', {
+            class: 'connector', y1: y, y2: y, x1: cx,
+            x2: right ? cx + amp + 12 : cx - amp - 12
+          }));
+          connG.appendChild(el('circle', { class: 'node-dot', cx: cx, cy: y, r: 3.2 }));
+        });
+
+        weaveLen = weave.getTotalLength();
+        weave.style.strokeDasharray = weaveLen;
+        weave.style.strokeDashoffset = weaveLen;
+        update();
+      }
+
+      function update() {
+        if (!weave) return;
+        const rect = timeline.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        // a ponta da linha fica ancorada na altura "anchor" da tela: ela cresce
+        // em sincronia com o scroll, sem disparar até o fim fora de vista.
+        const anchor = vh * 0.5;
+        const span = pathBottom - pathTop;
+        let p = (anchor - rect.top) / span;
+        p = Math.max(0, Math.min(1, p));
+        weave.style.strokeDashoffset = weaveLen * (1 - p);
+        // acende cada projeto quando ele cruza a linha de ancoragem (meio da tela)
+        buttons.forEach((btn, i) => {
+          const frac = (nodeYs[i] - pathTop) / span;
+          btn.classList.toggle('active', p >= frac - 0.01);
+        });
+      }
+
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(() => { update(); ticking = false; });
+        }
+      }, { passive: true });
+
+      let rt;
+      window.addEventListener('resize', () => {
+        clearTimeout(rt);
+        rt = setTimeout(build, 150);
+      });
+
+      build();
+
+      // ===== Modal de detalhes do projeto =====
+      const modal = document.getElementById('proj-modal');
+      const modalContent = document.getElementById('modal-content');
+      const modalMedia = document.getElementById('modal-media');
+      const articles = document.querySelectorAll('#proj-details > article');
+
+      // Mídia da coluna direita por projeto (índice = data-proj).
+      // Para usar um VÍDEO: { type: 'video', src: 'img/seu-video.mp4' }
+      // Para usar um PRINT: { type: 'img',   src: 'img/sua-imagem.png' }
+      // Deixe null para mostrar o espaço reservado "em breve".
+      const media = [
+        { type: 'video', src: 'img/provador-tryon.mp4?v=2' }, // 0 · Provador Virtual de Óculos 3D
+        { type: 'gallery', srcs: ['img/parkin-1.png', 'img/parkin-2.png', 'img/parkin-3.png'] }, // 1 · Parkin.cloud
+        { type: 'video', src: 'img/homepage-3d.mp4' }, // 2 · Homepage 3D interativa
+        { type: 'img', src: 'img/assistente-ola.png' }, // 3 · Assistente Pessoal com IA
+        { type: 'gallery', srcs: ['img/tela_inicial_estoque.png', 'img/imagem_estoque.png', 'img/historico_estoque.png'] }, // 4 · Estoque
+        { type: 'gallery', srcs: ['img/projetoIA.png', 'img/vida_amarela.png', 'img/vida_vermelha.png'] }, // 5 · IA Preditiva
+        { type: 'gallery', srcs: ['img/parte1.png', 'img/parte2.png', 'img/parte3.png', 'img/parte4.png', 'img/parte5.png'] } // 6 · Robô de Day Trade
+      ];
+
+      function setMedia(i) {
+        const m = media[i];
+        if (m && m.type === 'video') {
+          modalMedia.innerHTML = '<video src="' + m.src + '" autoplay muted loop playsinline controls></video>';
+        } else if (m && m.type === 'gallery') {
+          const slides = m.srcs.map(s => '<a class="mc-slide" href="' + s + '" target="_blank" rel="noopener"><img src="' + s + '" alt="" loading="lazy"></a>').join('');
+          const dots = m.srcs.map((s, k) => '<button class="mc-dot' + (k ? '' : ' active') + '" data-k="' + k + '" aria-label="Imagem ' + (k + 1) + '"></button>').join('');
+          modalMedia.innerHTML =
+            '<div class="media-carousel">' +
+              '<div class="mc-viewport"><div class="mc-track">' + slides + '</div></div>' +
+              '<button class="mc-arrow mc-prev" aria-label="Anterior">‹</button>' +
+              '<button class="mc-arrow mc-next" aria-label="Próxima">›</button>' +
+              '<div class="mc-dots">' + dots + '</div>' +
+            '</div>';
+          // proporção do viewport = proporção real das imagens (evita corte/barras)
+          const viewport = modalMedia.querySelector('.mc-viewport');
+          const firstImg = modalMedia.querySelector('.mc-slide img');
+          const fitRatio = () => { if (firstImg.naturalWidth) viewport.style.aspectRatio = firstImg.naturalWidth + ' / ' + firstImg.naturalHeight; };
+          if (firstImg.complete) fitRatio(); else firstImg.addEventListener('load', fitRatio, { once: true });
+          const track = modalMedia.querySelector('.mc-track');
+          const dotEls = modalMedia.querySelectorAll('.mc-dot');
+          const total = m.srcs.length;
+          let idx = 0;
+          const go = k => {
+            idx = (k + total) % total;
+            track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+            dotEls.forEach((d, j) => d.classList.toggle('active', j === idx));
+          };
+          modalMedia.querySelector('.mc-prev').onclick = () => go(idx - 1);
+          modalMedia.querySelector('.mc-next').onclick = () => go(idx + 1);
+          dotEls.forEach(d => d.onclick = () => go(+d.dataset.k));
+        } else if (m && m.type === 'img') {
+          modalMedia.innerHTML = '<a href="' + m.src + '" target="_blank" rel="noopener"><img src="' + m.src + '" alt="" loading="lazy"></a>';
+        } else {
+          modalMedia.innerHTML =
+            '<div class="media-placeholder">' +
+            '<svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm6 4v8l6-4-6-4z"/></svg>' +
+            '<span class="pt">Vídeo ou print do projeto<br>em funcionamento (em breve)</span>' +
+            '<span class="en">Video or screenshot of the<br>project in action (coming soon)</span>' +
+            '</div>';
+        }
+      }
+
+      function openModal(i) {
+        const src = articles[i];
+        if (!src) return;
+        const clone = src.cloneNode(true);
+        clone.querySelectorAll('details').forEach(dt => (dt.open = true));
+        modalContent.innerHTML = '';
+        modalContent.appendChild(clone);
+        setMedia(i);
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        modal.querySelector('.modal-close').focus();
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+        modalMedia.innerHTML = ''; // para o vídeo ao fechar
+      }
+
+      buttons.forEach((btn, i) => btn.addEventListener('click', () => openModal(i)));
+      modal.addEventListener('click', e => {
+        if (e.target.hasAttribute('data-close')) closeModal();
+      });
+      window.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && !modal.hidden) closeModal();
+      });
+    })();
+
+    // ===== Competências: carrossel em arco controlado por scroll =====
+    (function () {
+      const section = document.getElementById('competencias');
+      const stage = document.getElementById('sc-stage');
+      if (!section || !stage) return;
+
+      // Cada competência: ícone (em img/icons) + nome exibido no card.
+      // PIVOT = 17 → o ápice (Python) fica com 2 cards à direita (índices 18,19)
+      // e todo o resto à esquerda. Os índices 0–16 começam embaixo/à esquerda e
+      // sobem cruzando o centro conforme você rola; os 18,19 aparecem à direita
+      // em repouso. A ordem abaixo (de 0 a 19) é a sequência em que cruzam o topo.
+      const skills = [
+        { icon: 'flask', name: 'Flask' },             //  0 (último a aparecer)
+        { icon: 'pandas', name: 'Pandas' },           //  1
+        { icon: 'scikitlearn', name: 'scikit-learn' },//  2
+        { icon: 'googlegemini', name: 'Gemini API' }, //  3
+        { icon: 'langchain', name: 'LangChain' },     //  4
+        { icon: 'linux', name: 'Linux' },             //  5
+        { icon: 'git', name: 'Git' },                 //  6
+        { icon: 'css', name: 'CSS' },                 //  7
+        { icon: 'html5', name: 'HTML5' },             //  8
+        { icon: 'tailwindcss', name: 'Tailwind' },    //  9
+        { icon: 'threedotjs', name: 'Three.js' },     // 10
+        { icon: 'docker', name: 'Docker' },           // 11
+        { icon: 'postgresql', name: 'PostgreSQL' },   // 12 (visível em repouso, à esquerda)
+        { icon: 'nodedotjs', name: 'Node.js' },       // 13
+        { icon: 'django', name: 'Django' },           // 14
+        { icon: 'fastapi', name: 'FastAPI' },         // 15
+        { icon: 'typescript', name: 'TypeScript' },   // 16 (à esquerda do ápice)
+        { icon: 'python', name: 'Python' },           // 17 (ápice/centro em repouso)
+        { icon: 'react', name: 'React' },             // 18 (à direita do ápice)
+        { icon: 'javascript', name: 'JavaScript' }    // 19 (à direita, 2º)
+      ];
+
+      const BORDER_COLORS = [
+        '#4FD9B5', '#B597F5', '#FF8FB1', '#B8E94A', '#4FB6F5',
+        '#FFA85C', '#9D7AF5', '#5DD5CC', '#FFD850', '#F580B5', '#7FE2A8'
+      ];
+
+      // monta os 20 cards (cada um num "slot" angular fixo do oval)
+      const slots = skills.map((s, i) => {
+        const slot = document.createElement('div');
+        slot.className = 'sc-slot';
+        slot.innerHTML =
+          '<div class="sc-slot-inner"><div class="sc-card" style="border-color:' +
+          BORDER_COLORS[i % BORDER_COLORS.length] + '">' +
+          '<img src="img/icons/' + s.icon + '.svg" alt="' + s.name + '" draggable="false">' +
+          '<span class="sc-name">' + s.name + '</span></div></div>';
+        stage.appendChild(slot);
+        return slot;
+      });
+
+      // ---- parâmetros do arco ----
+      const ROTATE_START = 0.14;   // logo após crescer, começa a girar
+      const STEP_DEG = 16;         // ângulo entre cards (maior = mais separados)
+      // PIVOT 17 = início com ápice no índice 17 (2 vizinhos de cada lado: 15,16 | 18,19).
+      // SLIDE_STEPS 15 = fim com ápice no índice 2 (2 de cada lado: 0,1 | 3,4).
+      // Início e fim ficam simétricos (1 no centro + 2 em cada lateral).
+      const SLIDE_STEPS = 15;
+      const radius = 1020;
+      const verticalStretch = 1.45;
+      const PIVOT = 17;
+
+      function update() {
+        const rect = section.getBoundingClientRect();
+        const wh = window.innerHeight;
+        const scrollable = rect.height - wh;
+        if (scrollable <= 0) return;
+        let progress = -rect.top / scrollable;
+        progress = Math.max(0, Math.min(1, progress));
+        const anim = Math.min(1, progress / 0.9);
+
+        const phase1 = Math.min(1, anim / ROTATE_START);
+        const phase2 = Math.max(0, (anim - ROTATE_START) / (1 - ROTATE_START));
+        const scale = 0.45 + phase1 * 0.3;
+        const peakLift = 475 - wh;
+        const translateY = (1 - phase1) * -460 + phase1 * peakLift;
+        const angleOffset = phase2 * (SLIDE_STEPS * STEP_DEG);
+
+        stage.style.transform = 'translateY(' + translateY + 'px) scale(' + scale + ')';
+
+        const fadeStart = 2 * STEP_DEG;   // até ±2 cards: 100% visível
+        const fadeEnd = 3 * STEP_DEG;     // a partir de ±3 cards: invisível
+        for (let i = 0; i < slots.length; i++) {
+          const cardAngle = STEP_DEG * (i - PIVOT) + angleOffset;
+          const rad = (cardAngle * Math.PI) / 180;
+          const x = radius * Math.sin(rad);
+          const y = -radius * Math.cos(rad) * verticalStretch;
+          slots[i].style.transform =
+            'translate(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px) rotate(' + cardAngle.toFixed(2) + 'deg)';
+
+          // janela de foco: mostra só o ápice + 2 cards de cada lado
+          let norm = (((cardAngle + 180) % 360) + 360) % 360 - 180;
+          const t = Math.abs(norm);
+          const op = t <= fadeStart ? 1 : t >= fadeEnd ? 0 : 1 - (t - fadeStart) / (fadeEnd - fadeStart);
+          slots[i].style.opacity = op;
+          slots[i].style.pointerEvents = op < 0.05 ? 'none' : 'auto';
+        }
+      }
+
+      let raf = 0;
+      function onScroll() {
+        if (raf) return;
+        raf = requestAnimationFrame(() => { raf = 0; update(); });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      update();
+    })();
+
+    // ===== Experiência: pin + textos que se revezam (estilo dope.security) =====
+    (function () {
+      const section = document.getElementById('experiencia');
+      const title = document.getElementById('exp-title');
+      const zig = document.getElementById('exp-zig');
+      const zigPath = document.getElementById('exp-zig-path');
+      const zigPath2 = document.getElementById('exp-zig-path2');
+      const head = document.getElementById('exp-line-head');
+      const head2 = document.getElementById('exp-line-head2');
+      const ia = document.getElementById('exp-ia');
+      const web = document.getElementById('exp-web');
+      const parkin = document.getElementById('exp-parkin');
+      const aifeat = document.getElementById('exp-aifeat');
+      const sphere = document.getElementById('exp-sphere');
+      const pkPwa = document.getElementById('exp-pk-pwa');
+      const pkGeo = document.getElementById('exp-pk-geo');
+      const pkChat = document.getElementById('exp-pk-chat');
+      const pkPay = document.getElementById('exp-pk-pay');
+      const pkLink = document.getElementById('exp-pk-link');
+      const ec = document.getElementById('exp-ec');
+      const reg = document.getElementById('exp-reg');
+      const host = document.getElementById('exp-host');
+      const stack = document.getElementById('exp-stack');
+      const divTop = document.getElementById('exp-div-top');
+      const divBottom = document.getElementById('exp-div-bottom');
+      if (!section) return;
+
+      // fases (frações do scroll travado) — TUDO é a MESMA flecha:
+      const GROW_END = 0.074;      // 1) cresce esquerda→direita
+      const IA_FADE_END = 0.098;   // 2) completa; surge o "In..." na ponta
+      const SLIDE_END = 0.246;     // 3) flecha + "Inteligência Artificial" deslizam e PARAM na esquerda
+      const DIV_START = 0.279;     // 4) a MESMA flecha volta a crescer p/ direita (divisor)
+      const DIV_END = 0.451;       //    divisor completo + texto da IA cortado em cima/embaixo
+      const AI_OUT_END = 0.480;    // 5) o texto cortado da IA SOME (rápido)
+      const WEB_START = 0.480;     // 6) logo após o corte, a flecha puxa "Websites" na ponta
+      const WEB_FADE_END = 0.517;
+      const WEB_SLIDE_END = 0.656; // 7) flecha + "Websites" deslizam e PARAM na esquerda
+      const SINE_END = 0.736;        // 8) onda desenhada (fatia maior = onda mais lenta)
+      const SINE_HOLD_END = 0.750;   // 8b) onda COMPLETA segura um instante na extremidade direita
+      const PAN_END = 0.823;         // 9) PAN: a onda sai pela esquerda e a RETA de continuação é revelada (ponta reta)
+      const PARKIN_FADE_END = 0.843; // 9c) reta completa na direita; surge "Parkin" na ponta
+      const PARKIN_SLIDE_END = 0.878;// 9d) puxa "Parkin" (reta) p/ a esquerda e PARA
+      // 10) (após PARKIN_SLIDE_END) os losangos (zigue-zague) desenham — tela do Parkin
+
+      const clamp = v => Math.max(0, Math.min(1, v));
+
+      // monta o traçado: 'straight' (reta) nas fases da IA, ou 'zig' (zigue-zague)
+      // só na tela do Websites. Refeito no resize ou quando a forma muda.
+      let pathLen = 0, pathLen2 = 0, sineFrac = 1, zigSineLen = 0;
+      let lastShape = '';
+      const toD = pts => {
+        let d = '';
+        for (let i = 0; i < pts.length; i++) d += (i ? 'L' : 'M') + pts[i][0].toFixed(1) + ' ' + pts[i][1].toFixed(1) + ' ';
+        return d.trim();
+      };
+      // mesma coisa, mas arredondando cada vértice com um bezier (raio r) — direção
+      // contínua, então a ponta da flecha não fica "torta" ao passar pelas quinas.
+      const roundedPathD = (pts, r) => {
+        if (pts.length < 3) return toD(pts);
+        let d = 'M ' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+        for (let i = 1; i < pts.length - 1; i++) {
+          const p0 = pts[i - 1], p1 = pts[i], p2 = pts[i + 1];
+          const l1 = Math.hypot(p0[0] - p1[0], p0[1] - p1[1]);
+          const l2 = Math.hypot(p2[0] - p1[0], p2[1] - p1[1]);
+          const r1 = Math.min(r, l1 * 0.5), r2 = Math.min(r, l2 * 0.5);
+          const ax = p1[0] + (p0[0] - p1[0]) / l1 * r1, ay = p1[1] + (p0[1] - p1[1]) / l1 * r1;
+          const bx = p1[0] + (p2[0] - p1[0]) / l2 * r2, by = p1[1] + (p2[1] - p1[1]) / l2 * r2;
+          d += ' L ' + ax.toFixed(1) + ' ' + ay.toFixed(1) +
+               ' Q ' + p1[0].toFixed(1) + ' ' + p1[1].toFixed(1) + ' ' + bx.toFixed(1) + ' ' + by.toFixed(1);
+        }
+        const last = pts[pts.length - 1];
+        return d + ' L ' + last[0].toFixed(1) + ' ' + last[1].toFixed(1);
+      };
+      function buildPath(shape) {
+        const vw = window.innerWidth, vh = window.innerHeight;
+        const midY = vh * 0.5;
+        if (zig) zig.setAttribute('viewBox', '0 0 ' + vw + ' ' + vh);
+
+        // traçado principal (A)
+        let ptsA;
+        if (shape === 'zig') {
+          // onda do Websites até pouco antes de vw; depois um CANTO ARREDONDADO (fillet,
+          // controle no próprio canto → a curva fica NO nível do centro, sem subir acima)
+          // e a reta segue no centro. O fillet vai no 'd' (Q), abaixo.
+          const amp = vh * 0.18, cycles = 1.5, steps = Math.max(48, Math.round(vw / 7));
+          const r = vw * 0.05;                          // raio do arredondamento
+          const tA = 1 - r / vw, stepsA = Math.max(40, Math.round(steps * tA));
+          ptsA = [];
+          zigSineLen = 0;
+          for (let i = 0; i <= stepsA; i++) {
+            const t = (i / stepsA) * tA;
+            const x = t * vw, y = midY + amp * Math.sin(t * Math.PI * 2 * cycles);
+            if (i > 0) zigSineLen += Math.hypot(x - ptsA[ptsA.length - 1][0], y - ptsA[ptsA.length - 1][1]);
+            ptsA.push([x, y]);
+          }
+        } else if (shape === 'cross') {
+          // zigue-zague triangular (A): forma os losangos com o espelho (B)
+          const amp = vh * 0.26;
+          ptsA = [[0, 0], [0.167, 1], [0.333, 0], [0.5, -1], [0.667, 0], [0.833, 1], [1, 0]]
+            .map(v => [v[0] * vw, midY + v[1] * amp]);
+        } else {
+          ptsA = [[0, midY], [vw, midY]];   // reta
+        }
+        if (zigPath) {
+          let dA = shape === 'cross' ? roundedPathD(ptsA, vh * 0.075) : toD(ptsA);
+          let r = 0;
+          if (shape === 'zig') {
+            r = vw * 0.05;
+            // fillet: controle no canto (vw, midY) → arredonda SEM ultrapassar o centro
+            dA += ' Q ' + vw.toFixed(1) + ' ' + midY.toFixed(1) +
+                  ' ' + (vw + r).toFixed(1) + ' ' + midY.toFixed(1) +
+                  ' L ' + (2 * vw).toFixed(1) + ' ' + midY.toFixed(1);
+          }
+          zigPath.setAttribute('d', dA);
+          pathLen = zigPath.getTotalLength();
+          zigPath.style.strokeDasharray = pathLen;
+          // fração que é a ONDA do Websites (até ~o canto); o resto (fillet + reta) no pan
+          sineFrac = (shape === 'zig' && pathLen) ? (zigSineLen + r) / pathLen : 1;
+        }
+
+        // traçado secundário (B) — só existe no 'cross' (espelho vertical de A)
+        if (zigPath2) {
+          if (shape === 'cross') {
+            const amp = vh * 0.26;
+            const ptsB = [[0, 0], [0.167, 1], [0.333, 0], [0.5, -1], [0.667, 0], [0.833, 1], [1, 0]]
+              .map(v => [v[0] * vw, midY - v[1] * amp]);
+            zigPath2.setAttribute('d', roundedPathD(ptsB, vh * 0.075));
+            pathLen2 = zigPath2.getTotalLength();
+            zigPath2.style.strokeDasharray = pathLen2;
+          } else {
+            zigPath2.setAttribute('d', '');
+            pathLen2 = 0;
+          }
+        }
+        lastShape = shape;
+      }
+      buildPath('straight');
+
+      function update() {
+        const rect = section.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const scrollable = rect.height - vh;
+        if (scrollable <= 0) return;            // mobile (sem trava) cai aqui
+        // toda a animação ocorre nos primeiros (1-HOLD) do scroll; o resto é TRAVA
+        // extra na tela final do Parkin (nada muda, tela parada).
+        const HOLD = 0.05;
+        const p = clamp(clamp(-rect.top / scrollable) / (1 - HOLD));
+        const vw = window.innerWidth;
+
+        // título recua de leve para a esquerda; e SOME quando o "Websites" se
+        // assenta na esquerda (evita a tela ficar cheia demais).
+        if (title) {
+          title.style.transform = 'translateX(' + (-p * 40).toFixed(1) + 'px)';
+          title.style.opacity = (1 - clamp((p - 0.59) / 0.066)).toFixed(3);
+        }
+
+        // forma da flecha por fase: reta (IA) / onda (Websites) / reta (volta) / cruzada
+        let shape;
+        if (p <= WEB_SLIDE_END) shape = 'straight';
+        else if (p <= PARKIN_SLIDE_END) shape = 'zig';   // onda + reta de continuação (Websites→Parkin)
+        else shape = 'cross';                            // losangos (Parkin)
+        if (shape !== lastShape) buildPath(shape);
+
+        // ---- quanto desenhar (revealFrac) + deslize, conforme a fase ----
+        let revealFrac, translateX;
+        if (p <= GROW_END) {                          // 1) desenha esq→dir (reta)
+          revealFrac = clamp(p / GROW_END); translateX = 0;
+        } else if (p <= IA_FADE_END) {                // 2) traçado completo na direita
+          revealFrac = 1; translateX = 0;
+        } else if (p <= SLIDE_END) {                  // 3) desliza tudo p/ esquerda (IA)
+          revealFrac = 1; translateX = -clamp((p - IA_FADE_END) / (SLIDE_END - IA_FADE_END)) * vw;
+        } else if (p <= WEB_FADE_END) {               // 4-6) re-desenha (divisor) e segura
+          revealFrac = clamp((p - DIV_START) / (DIV_END - DIV_START)); translateX = 0;
+        } else if (p <= WEB_SLIDE_END) {              // 7) flecha + "Websites" deslizam p/ esquerda
+          revealFrac = 1; translateX = -clamp((p - WEB_FADE_END) / (WEB_SLIDE_END - WEB_FADE_END)) * vw;
+        } else if (p <= SINE_END) {                   // 8) ONDA se desenha (até o fim da onda)
+          revealFrac = sineFrac * clamp((p - WEB_SLIDE_END) / (SINE_END - WEB_SLIDE_END)); translateX = 0;
+        } else if (p <= SINE_HOLD_END) {              // 8b) onda completa SEGURA na extremidade direita
+          revealFrac = sineFrac; translateX = 0;
+        } else if (p <= PAN_END) {                    // 9) PAN: onda sai pela esquerda; a RETA é revelada pela direita
+          const f = clamp((p - SINE_HOLD_END) / (PAN_END - SINE_HOLD_END));
+          revealFrac = sineFrac + (1 - sineFrac) * f; translateX = -f * vw;
+        } else if (p <= PARKIN_FADE_END) {            // 9c) reta completa na direita; "Parkin" surge na ponta
+          revealFrac = 1; translateX = -vw;
+        } else if (p <= PARKIN_SLIDE_END) {           // 9d) puxa "Parkin" (reta) p/ a esquerda
+          revealFrac = 1; translateX = -vw - clamp((p - PARKIN_FADE_END) / (PARKIN_SLIDE_END - PARKIN_FADE_END)) * vw;
+        } else {                                      // 10) losangos (zigue-zague) — Parkin
+          revealFrac = clamp((p - PARKIN_SLIDE_END) / (1 - PARKIN_SLIDE_END)); translateX = 0;
+        }
+
+        // desenha os traçados (dashoffset) e desliza (translateX)
+        if (zigPath) zigPath.style.strokeDashoffset = (pathLen * (1 - revealFrac)).toFixed(1);
+        if (zigPath2) zigPath2.style.strokeDashoffset = (shape === 'cross' ? pathLen2 * (1 - revealFrac) : pathLen2).toFixed(1);
+        if (zig) zig.style.transform = 'translateX(' + translateX.toFixed(1) + 'px)';
+
+        // ponta da flecha A: segue o bico do traçado desenhado e gira na direção dele
+        let headX = vw + translateX;
+        if (zigPath && pathLen) {
+          const tip = zigPath.getPointAtLength(pathLen * revealFrac);
+          // amostra maior que o raio do arredondamento → direção do segmento RETO
+          // (inclinado), não a tangente horizontal da quina → ponta não fica torta.
+          const prev = zigPath.getPointAtLength(Math.max(0, pathLen * revealFrac - vh * 0.09));
+          headX = tip.x + translateX;
+          if (head) {
+            head.style.left = headX.toFixed(1) + 'px';
+            head.style.top = tip.y.toFixed(1) + 'px';
+            head.style.transform = 'translate(-50%, -50%) rotate(' +
+              (Math.atan2(tip.y - prev.y, tip.x - prev.x) * 180 / Math.PI).toFixed(1) + 'deg)';
+            head.style.opacity = revealFrac > 0.02 ? 1 : 0;
+          }
+        }
+        // ponta da flecha B: só na fase 10 (cruzada)
+        if (head2) {
+          if (shape === 'cross' && zigPath2 && pathLen2) {
+            const tip2 = zigPath2.getPointAtLength(pathLen2 * revealFrac);
+            const prev2 = zigPath2.getPointAtLength(Math.max(0, pathLen2 * revealFrac - vh * 0.09));
+            head2.style.left = (tip2.x + translateX).toFixed(1) + 'px';
+            head2.style.top = tip2.y.toFixed(1) + 'px';
+            head2.style.transform = 'translate(-50%, -50%) rotate(' +
+              (Math.atan2(tip2.y - prev2.y, tip2.x - prev2.x) * 180 / Math.PI).toFixed(1) + 'deg)';
+            head2.style.opacity = revealFrac > 0.02 ? 1 : 0;
+          } else {
+            head2.style.opacity = 0;
+          }
+        }
+
+        // no PAN (9a) — quando a tela move e a onda sai — some o conteúdo do Websites
+        const reset9 = clamp((p - SINE_HOLD_END) / (PAN_END - SINE_HOLD_END));
+
+        // "Inteligência Artificial" acompanha a ponta da flecha (começa nela e
+        // é revelado ao deslizar); some na folga antes da fase 4.
+        if (ia) {
+          ia.style.left = headX.toFixed(1) + 'px';
+          const iaIn = clamp((p - GROW_END) / (IA_FADE_END - GROW_END));
+          const iaOut = clamp((p - SLIDE_END) / (DIV_START - SLIDE_END));
+          ia.style.opacity = (iaIn * 0.12 * (1 - iaOut)).toFixed(3);
+        }
+
+        // "Integração de vídeo/áudio por IA" (canto inf. esq.): surge quando a ponta
+        // varre por cima dela no deslize (tela da IA assentada — "Desenvolvimento e
+        // operação de dezenas de agentes…"), permanece no divisor e some ao virar p/ Websites.
+        if (aifeat) {
+          let inFrac;
+          if (p <= IA_FADE_END) inFrac = 0;                                    // antes da IA: escondido
+          else if (p <= SLIDE_END) inFrac = clamp((vw * 0.30 - headX) / (vw * 0.16)); // ponta varre por cima
+          else inFrac = 1;                                                     // assentado: permanece
+          const outFrac = clamp((p - DIV_END) / (AI_OUT_END - DIV_END));       // some ao virar p/ Websites
+          aifeat.style.opacity = (inFrac * (1 - outFrac)).toFixed(3);
+        }
+
+        // fase 4: o texto começa JUNTO no meio (uma peça só) e, conforme a flecha
+        // "corta" passando por ele, separa em dois — o de cima sobe, o de baixo desce.
+        // fase 5: depois, esse texto SOME (fade-out) pra flecha puxar o próximo.
+        const divP = clamp((p - DIV_START) / (DIV_END - DIV_START));
+        const sep = clamp((divP - 0.32) / 0.6) * 30;   // 0 = junto (no corte), 30px = separado
+        const aiOut = clamp((p - DIV_END) / (AI_OUT_END - DIV_END));   // 0→1: some o texto da IA
+        if (divTop) {
+          divTop.style.opacity = (clamp(divP / 0.18) * (1 - aiOut)).toFixed(3);
+          divTop.style.transform = 'translateY(calc(-100% - ' + sep.toFixed(1) + 'px))';
+        }
+        if (divBottom) {
+          divBottom.style.opacity = (clamp((divP - 0.04) / 0.18) * (1 - aiOut)).toFixed(3);
+          divBottom.style.transform = 'translateY(' + sep.toFixed(1) + 'px)';
+        }
+
+        // fase 6: com o texto da IA já sumido, a flecha (na direita) puxa "Websites"
+        // na ponta. Na fase 8 (zigue-zague) o "Websites" fica PARADO na esquerda.
+        if (web) {
+          if (p <= WEB_SLIDE_END) web.style.left = headX.toFixed(1) + 'px';
+          web.style.opacity = (clamp((p - WEB_START) / (WEB_FADE_END - WEB_START)) * 0.12 * (1 - reset9)).toFixed(3);
+        }
+
+        // o texto dos e-commerces SURGE no mesmo instante em que o título some
+        // (mesma janela 0.72→0.80), no meio da tela; some na volta (fase 9).
+        if (ec) ec.style.opacity = (clamp((p - 0.59) / 0.066) * (1 - reset9)).toFixed(3);
+
+        // "React/TypeScript" aparece quando a ponta da onda passa pelo centro;
+        // depois fica e some na volta (fase 9).
+        if (stack) {
+          const base = p > SINE_END ? 1 : (p > WEB_SLIDE_END ? clamp((headX - vw * 0.42) / (vw * 0.14)) : 0);
+          stack.style.opacity = (base * (1 - reset9)).toFixed(3);
+        }
+
+        // "Registro de domínio" (esq.) e "Deploy & hospedagem" (dir.) aparecem quando
+        // a ponta da onda passa por eles; depois ficam e somem na volta (fase 9).
+        if (reg) {
+          const base = p > SINE_END ? 1 : (p > WEB_SLIDE_END ? clamp((headX - vw * 0.05) / (vw * 0.15)) : 0);
+          reg.style.opacity = (base * (1 - reset9)).toFixed(3);
+        }
+        if (host) {
+          const base = p > SINE_END ? 1 : (p > WEB_SLIDE_END ? clamp((headX - vw * 0.72) / (vw * 0.14)) : 0);
+          host.style.opacity = (base * (1 - reset9)).toFixed(3);
+        }
+
+        // fase 9-10: "Parkin" surge na ponta da onda (direita), é puxado p/ a esquerda
+        // e fica PARADO enquanto os losangos desenham (tela do Parkin).
+        if (parkin) {
+          if (p <= PARKIN_SLIDE_END) parkin.style.left = headX.toFixed(1) + 'px';
+          parkin.style.opacity = (clamp((p - PAN_END) / (PARKIN_FADE_END - PAN_END)) * 0.12).toFixed(3);
+        }
+
+        // esfera "marketplace": surge enquanto as flechas cruzadas (fase 10) desenham
+        if (sphere) {
+          const crossP = clamp((p - PARKIN_SLIDE_END) / (1 - PARKIN_SLIDE_END));
+          sphere.style.opacity = clamp(crossP / 0.35).toFixed(3);
+        }
+
+        // rótulos do Parkin: aparecem conforme a ponta avança por cada losango (fase 10)
+        if (pkPwa) {
+          const onCross = shape === 'cross';
+          const fade = thr => onCross ? clamp((headX - vw * thr) / (vw * 0.06)).toFixed(3) : '0';
+          pkPwa.style.opacity = fade(0.29);
+          pkChat.style.opacity = fade(0.29);
+          pkLink.style.opacity = fade(0.45);
+          pkGeo.style.opacity = fade(0.61);
+          pkPay.style.opacity = fade(0.61);
+        }
+      }
+
+      let raf = 0;
+      function onScroll() {
+        if (raf) return;
+        raf = requestAnimationFrame(() => { raf = 0; update(); });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', () => { buildPath(lastShape || 'straight'); onScroll(); }, { passive: true });
+      update();
+    })();
+
+    // ===== Formação: cérebro 3D viaja num arco (direita→esquerda) girando =====
+    (function () {
+      const section = document.getElementById('formacao');
+      const brain = document.getElementById('brain-model');
+      const heading = section && section.querySelector('.brain-heading');
+      if (!section || !brain) return;
+
+      const clamp = v => Math.max(0, Math.min(1, v));
+      const eduItems = [1, 2, 3].map(n => ({
+        line: document.getElementById('edu-line-' + n),
+        txt: document.getElementById('edu-txt-' + n)
+      }));
+
+      const BRAIN_END = 0.36;     // o cérebro chega na esquerda (1ª parte)
+      const ITEMS_START = 0.40;   // depois, os itens surgem um a um
+      const ITEMS_END = 0.64;
+      const RETURN_START = 0.70;  // volta pro MEIO + some os itens
+      const RETURN_END = 0.97;    // termina quase no fim → pouca trava sobrando
+
+      // caminho do CENTRO do cérebro (% do viewport) — bezier quadrático, arco por cima.
+      // p=0: direita ("bola lateral") · p=0.5: topo-centro · p=1: esquerda
+      // pontas simétricas: mesma altura (y) e mesma distância das margens (70% e 30%)
+      const P0 = { x: 70, y: 55 };   // início (direita)
+      const PC = { x: 50, y: 22 };   // controle: arco pra cima, centrado em p=0.5
+      const P1 = { x: 30, y: 55 };   // fim (esquerda)
+      const PM = { x: 50, y: 53 };   // meio (centro) — pra onde o cérebro volta no fim
+
+      function update() {
+        const rect = section.getBoundingClientRect();
+        const scrollable = rect.height - window.innerHeight;
+        if (scrollable <= 0) return;
+        const rawP = clamp(-rect.top / scrollable);
+        const smooth = t => t * t * (3 - 2 * t);
+
+        // ---- posição + rotação do cérebro, por fase ----
+        let x, y, theta, headOp;
+        if (rawP <= BRAIN_END) {
+          // fase 1: direita → esquerda (arco), girando direito→frente→esquerda
+          const p = clamp(rawP / BRAIN_END), mt = 1 - p;
+          x = mt * mt * P0.x + 2 * mt * p * PC.x + p * p * P1.x;
+          y = mt * mt * P0.y + 2 * mt * p * PC.y + p * p * P1.y;
+          theta = 90 - p * 180;
+          headOp = 1 - clamp((p - 0.5) / 0.3);
+        } else if (rawP < RETURN_START) {
+          // parado à esquerda enquanto os itens surgem
+          x = P1.x; y = P1.y; theta = -90; headOp = 0;
+        } else {
+          // fase 3: volta da esquerda pro MEIO, girando esquerda→frente (-90→0)
+          const q = smooth(clamp((rawP - RETURN_START) / (RETURN_END - RETURN_START)));
+          x = P1.x + (PM.x - P1.x) * q;
+          y = P1.y + (PM.y - P1.y) * q;
+          theta = -90 + q * 90;
+          headOp = 0;
+        }
+        brain.style.left = x.toFixed(2) + '%';
+        brain.style.top = y.toFixed(2) + '%';
+        brain.cameraOrbit = theta.toFixed(1) + 'deg 88deg auto';
+        if (brain.jumpCameraToGoal) brain.jumpCameraToGoal();
+        if (heading) heading.style.opacity = headOp.toFixed(3);
+
+        // ---- itens: revelam um a um (linha→texto) e somem na volta ----
+        const itemsP = clamp((rawP - ITEMS_START) / (ITEMS_END - ITEMS_START));
+        const itemsOut = clamp((rawP - RETURN_START) / (RETURN_END - RETURN_START));
+        const n = eduItems.length;
+        eduItems.forEach((it, i) => {
+          const local = clamp((itemsP - i / n) / (1 / n));
+          if (it.line) {
+            it.line.style.transform = 'scaleX(' + clamp(local / 0.5).toFixed(3) + ')';
+            it.line.style.opacity = (1 - itemsOut).toFixed(3);
+          }
+          if (it.txt) it.txt.style.opacity = (clamp((local - 0.5) / 0.5) * (1 - itemsOut)).toFixed(3);
+        });
+      }
+
+      let raf = 0;
+      function onScroll() {
+        if (raf) return;
+        raf = requestAnimationFrame(() => { raf = 0; update(); });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      brain.addEventListener('load', update);
+      update();
+    })();
+
+    // ===== Contato: título "digitando" — escreve, apaga e troca de frase em loop =====
+    (function () {
+      const el = document.getElementById('type-text');
+      if (!el) return;
+      const sets = {
+        pt: ['Envie uma Mensagem', 'Fale comigo', 'Bora trocar uma ideia?'],
+        en: ['Send a Message', 'Talk to me', "Let's chat?"]
+      };
+      const curLang = () => document.body.classList.contains('lang-en') ? 'en' : 'pt';
+      let pi = 0, ci = 0, deleting = false;
+      function tick() {
+        const list = sets[curLang()];
+        const word = list[pi % list.length];
+        if (!deleting) {
+          ci++;
+          el.textContent = word.slice(0, ci);
+          if (ci >= word.length) { deleting = true; return setTimeout(tick, 1500); }
+          setTimeout(tick, 85 + Math.random() * 70);   // digitando
+        } else {
+          ci--;
+          el.textContent = word.slice(0, Math.max(0, ci));
+          if (ci <= 0) { deleting = false; pi++; return setTimeout(tick, 400); }
+          setTimeout(tick, 45);                          // apagando
+        }
+      }
+      tick();
+    })();
+  </script>
+</body>
+</html>
