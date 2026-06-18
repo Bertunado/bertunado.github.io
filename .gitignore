@@ -1,0 +1,2 @@
+# Arquivo do Cloudflare Worker — fica local p/ referência, mas NÃO vai pro site público
+cloudflare-worker.js
